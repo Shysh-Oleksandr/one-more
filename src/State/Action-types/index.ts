@@ -3,4 +3,5 @@ export enum ActionType {
   REMOVING = "Removing",
   EDITING = "Editing",
   MARKING = "Marking",
+  SET_IS_ADDING = "SetIsAdding",
 }

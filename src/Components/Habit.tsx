@@ -3,7 +3,7 @@ import React from "react";
 export interface IHabit {
   name: string;
   color: string;
-  markedDays: {
+  markedDays?: {
     date: Date;
     isMarked: boolean;
   };

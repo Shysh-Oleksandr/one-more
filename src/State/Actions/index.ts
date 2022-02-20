@@ -1,27 +1,34 @@
 import { ActionType } from "../Action-types";
+import { IHabit } from "./../../Components/Habit";
 
 interface AddingAction {
   type: ActionType.ADDING;
-  payload: number;
+  payload: IHabit;
 }
 
 interface EditingAction {
   type: ActionType.EDITING;
-  payload: number;
+  payload?: number;
 }
 
 interface RemovingAction {
   type: ActionType.REMOVING;
-  payload: number;
+  payload?: number;
 }
 
 interface MarkingAction {
   type: ActionType.MARKING;
-  payload: number;
+  payload?: number;
+}
+
+interface SetIsAddingAction {
+  type: ActionType.SET_IS_ADDING;
+  payload: boolean;
 }
 
 export type Action =
   | AddingAction
   | EditingAction
   | RemovingAction
-  | MarkingAction;
+  | MarkingAction
+  | SetIsAddingAction;

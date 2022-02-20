@@ -1,12 +1,13 @@
 import { Dispatch } from "redux";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
+import { IHabit } from "./../../Components/Habit";
 
-export const addingHabit = (amount: number) => {
+export const addingHabit = (habitToAdd: IHabit) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.ADDING,
-      payload: amount,
+      payload: habitToAdd,
     });
   };
 };
@@ -34,6 +35,15 @@ export const markingHabit = (amount: number) => {
     dispatch({
       type: ActionType.MARKING,
       payload: amount,
+    });
+  };
+};
+
+export const setIsAddingHabit = (statement: boolean) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.SET_IS_ADDING,
+      payload: statement,
     });
   };
 };

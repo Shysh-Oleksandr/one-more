@@ -4,6 +4,8 @@ import { IHabit } from "./../../Components/Habit";
 
 interface IHabits {
   habits: IHabit[];
+  isAddingHabit: boolean;
+  isEditingHabit: boolean;
 }
 
 const initialState: IHabits = {
@@ -25,6 +27,8 @@ const initialState: IHabits = {
       },
     },
   ],
+  isAddingHabit: false,
+  isEditingHabit: false,
 };
 
 const habitReducer = (
@@ -32,8 +36,11 @@ const habitReducer = (
   action: Action
 ): IHabits => {
   switch (action.type) {
-    // case ActionType.ADDING:
-    //   return state + action.payload;
+    case ActionType.SET_IS_ADDING:
+      return { ...state, isAddingHabit: action.payload };
+
+    case ActionType.ADDING:
+      return { ...state, habits: [...state.habits, action.payload] };
 
     // case ActionType.REMOVING:
     //   return state - action.payload;
