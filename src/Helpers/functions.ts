@@ -1,3 +1,5 @@
+export const DAYS_TO_SHOW: number = 14;
+
 export function getDayName(dateStr: Date, locale: string) {
   return `${dateStr.toLocaleDateString(locale, {
     weekday: "short",
@@ -7,7 +9,7 @@ export function getDayName(dateStr: Date, locale: string) {
 export function getMinDate(): Date {
   const currentDate = new Date();
   var minDate = new Date(currentDate.getTime());
-  minDate.setDate(currentDate.getDate() - 13);
+  minDate.setDate(currentDate.getDate() - DAYS_TO_SHOW + 1);
   return minDate;
 }
 

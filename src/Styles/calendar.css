@@ -4,19 +4,19 @@
 }
 
 .react-calendar__tile {
-  @apply whitespace-pre-line flex-none px-5 text-gray-500 font-medium cursor-default !important;
+  @apply whitespace-pre-line flex-none px-5 text-gray-500 font-medium cursor-default w-[57px] !important;
 }
 
 .react-calendar {
-  @apply bg-slate-200 flex;
+  @apply bg-slate-200 flex px-32;
 }
 
 .react-calendar__month-view__days {
-  @apply overflow-auto flex-nowrap  ml-auto flex-row-reverse p-3 !important;
+  @apply flex-nowrap flex-row-reverse p-3 !important;
 }
 
 .react-calendar__viewContainer {
-  @apply overflow-auto basis-2/3 flex-grow flex-shrink ml-auto !important;
+  @apply basis-2/3 flex-grow flex-shrink ml-auto !important;
 }
 
 .react-calendar__navigation {
@@ -32,5 +32,5 @@
 }
 
 .react-calendar__navigation__label {
-  @apply text-xl first-letter:capitalize;
+  @apply text-xl first-letter:capitalize text-left;
 }

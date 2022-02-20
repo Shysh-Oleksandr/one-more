@@ -27,7 +27,7 @@ function Habits() {
           formatDay={(locale, date) => getDayName(date, locale)}
         />
       </div>
-      <div>
+      <div className="">
         {habitsState.habits.map((habit: IHabit, index: number) => {
           return (
             <div key={uuidv4()}>
