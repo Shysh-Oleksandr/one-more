@@ -1,29 +1,41 @@
 import React from "react";
 import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreactors, State } from "../State";
 import "../Styles/calendar.css";
-import { getDayName } from "./../Helpers/functions";
+import { v4 as uuidv4 } from "uuid";
 
-type Props = {};
+import { getMinDate, getMaxDate, getDayName } from "./../Helpers/functions";
+import Habit, { IHabit } from "./Habit";
 
-function Habits({}: Props) {
-  const currentDate = new Date();
+function Habits() {
+  const dispatch = useDispatch();
 
-  var minDate = new Date(currentDate.getTime());
-  minDate.setDate(currentDate.getDate() - 39);
-
-  var maxDate = new Date(currentDate.getTime());
-  maxDate.setDate(currentDate.getDate() - 17);
+  const { addingHabit, removingHabit, editingHabit, markingHabit } =
+    bindActionCreators(actionCreactors, dispatch);
+  const habitsState = useSelector((state: State) => state.habits);
 
   return (
     <div className="">
-      <Calendar
-        maxDate={maxDate}
-        minDate={minDate}
-        minDetail="month"
-        defaultView="month"
-        formatDay={(locale, date) => getDayName(date, locale)}
-      />
+      <div>
+        <Calendar
+          maxDate={getMaxDate()}
+          minDate={getMinDate()}
+          minDetail="month"
+          defaultView="month"
+          formatDay={(locale, date) => getDayName(date, locale)}
+        />
+      </div>
+      <div>
+        {habitsState.habits.map((habit: IHabit, index: number) => {
+          return (
+            <div key={uuidv4()}>
+              <Habit habit={habit} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

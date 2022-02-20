@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import habitReducer from "./HabitReducer";
 
 const reducers = combineReducers({
-  habit: habitReducer,
+  habits: habitReducer,
 });
 
 export default reducers;
