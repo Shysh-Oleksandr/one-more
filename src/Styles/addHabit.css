@@ -1,0 +1,15 @@
+.add-habit__label {
+  @apply text-2xl mr-1 ml-8 font-medium flex-shrink-0 flex-grow-0 basis-1/5;
+}
+
+.add-habit__input {
+  @apply h-10 text-lg leading-8  p-2 rounded-md bg-transparent shadow-md border-white border-[1px] text-slate-600;
+}
+
+.add-habit__block {
+  @apply mt-4 flex items-center;
+}
+
+.add-habit__error {
+  @apply text-red-500 text-lg font-medium mt-2 block;
+}
