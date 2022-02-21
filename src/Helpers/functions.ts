@@ -9,13 +9,13 @@ export function getDayName(dateStr: Date, locale: string) {
 export function getMinDate(): Date {
   const currentDate = new Date();
   var minDate = new Date(currentDate.getTime());
-  minDate.setDate(currentDate.getDate() - DAYS_TO_SHOW + 1);
+  minDate.setDate(currentDate.getDate() - DAYS_TO_SHOW - 10 + 1);
   return minDate;
 }
 
 export function getMaxDate(): Date {
   const currentDate = new Date();
   var maxDate = new Date(currentDate.getTime());
-  maxDate.setDate(currentDate.getDate());
+  maxDate.setDate(currentDate.getDate() - 10);
   return maxDate;
 }

@@ -1,36 +1,50 @@
 .react-calendar__month-view__weekdays,
-.react-calendar__tile:disabled {
+.react-calendar__tile:disabled,
+.react-calendar__navigation__arrow:disabled {
   @apply hidden !important;
 }
 
 .react-calendar__tile {
-  @apply whitespace-pre-line flex-none px-5 text-gray-500 font-medium cursor-default w-[57px] !important;
+  @apply whitespace-pre-line m-0 flex-none px-5 text-gray-500 font-medium cursor-default w-[57px] !important;
 }
 
-.react-calendar {
+.habits__calendar .react-calendar {
   @apply bg-slate-200 flex px-32;
 }
 
 .react-calendar__month-view__days {
-  @apply flex-nowrap flex-row-reverse p-3 !important;
+  @apply flex-nowrap flex-row-reverse p-3 justify-end !important;
 }
 
-.react-calendar__viewContainer {
-  @apply basis-2/3 flex-grow flex-shrink ml-auto !important;
+.habits__calendar .react-calendar__viewContainer {
+  @apply basis-2/3 flex-grow flex-shrink ml-auto relative !important;
 }
 
-.react-calendar__navigation {
+.habits__calendar .react-calendar__navigation {
   @apply basis-1/3 flex-grow flex-shrink-0 flex items-center;
 }
 
-.react-calendar__navigation button:not(.react-calendar__navigation__label) {
-  @apply hidden;
+.habits__calendar .react-calendar__navigation__arrow {
+  @apply absolute top-1/2 text-xl;
+  transform: translateY(-50%);
 }
 
-.react-calendar__month-view__days__day--neighboringMonth {
+.habits__calendar .react-calendar__navigation__prev-button {
+  @apply -right-2;
+}
+
+.habits__calendar .react-calendar__navigation__next-button {
+  @apply -left-2;
+}
+
+.habits__calendar .react-calendar__month-view__days__day--neighboringMonth {
   @apply text-green-500 cursor-pointer !important;
 }
 
-.react-calendar__navigation__label {
+.habits__calendar .react-calendar__navigation__label {
   @apply text-xl first-letter:capitalize text-left;
+}
+
+.marks .marked {
+  @apply text-black;
 }

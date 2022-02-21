@@ -4,5 +4,5 @@
 
 html,
 body {
-  @apply overflow-hidden;
+  @apply overflow-hidden h-full;
 }
