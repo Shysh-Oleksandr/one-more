@@ -1,5 +1,6 @@
 .react-calendar__month-view__weekdays,
 .react-calendar__tile:disabled,
+.marks .react-calendar__navigation,
 .react-calendar__navigation__arrow:disabled {
   @apply hidden !important;
 }

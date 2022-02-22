@@ -18,15 +18,11 @@ function Habits() {
   const habitsState = useSelector((state: State) => state.habits);
 
   function changeMonth() {
-    console.log("month");
-
     document
       .querySelectorAll(
-        ".marks .react-calendar__month-view__days__day--neighboringMonth:not([disabled])"
+        ".marks .react-calendar__navigation__arrow:not([disabled])"
       )
       .forEach((el: any) => {
-        console.log(el.onclick);
-
         el.click();
       });
   }
@@ -59,7 +55,7 @@ function Habits() {
           defaultView="month"
           prevLabel={<GrNext />}
           nextLabel={<GrPrevious />}
-          // showNeighboringMonth={false}
+          showNeighboringMonth={false}
           onActiveStartDateChange={() => changeMonth()}
           formatDay={(locale: string, date: Date) => getDayName(date, locale)}
         />

@@ -44,8 +44,6 @@ function formatToMarkIcon() {
 
 function markDay(value: Date, event: any) {
   if (!event.target.classList.contains("mark")) {
-    console.log(event.target.onclick);
-
     return;
   }
   if (event.target.classList.contains("marked")) {
@@ -53,7 +51,6 @@ function markDay(value: Date, event: any) {
   } else {
     event.target.classList.add("marked");
   }
-  console.dir(event.target);
 }
 
 function Habit({ habit }: IProps) {
@@ -72,8 +69,8 @@ function Habit({ habit }: IProps) {
           minDate={getMinDate()}
           minDetail="month"
           defaultView="month"
-          // showNeighboringMonth={false}
-          showNavigation={false}
+          showNeighboringMonth={false}
+          // showNavigation={false}
           formatDay={formatToMarkIcon}
         />
       </div>
