@@ -49,7 +49,12 @@ function AddHabit() {
     let habitName = getValues("name");
     let habitColor = getValues("color");
 
-    addingHabit({ name: habitName, color: habitColor });
+    addingHabit({
+      name: habitName,
+      color: habitColor,
+      markedDays: [],
+      id: habitsState.habits[habitsState.habits.length - 1].id + 1,
+    });
 
     setIsAddingHabit(false);
   };

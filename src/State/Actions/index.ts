@@ -18,7 +18,7 @@ interface RemovingAction {
 
 interface MarkingAction {
   type: ActionType.MARKING;
-  payload?: number;
+  payload: { date: Date; id: number };
 }
 
 interface SetIsAddingAction {

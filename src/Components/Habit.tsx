@@ -6,54 +6,75 @@ import {
   getMinDate,
 } from "./../Helpers/functions";
 import Calendar from "react-calendar";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { useSelector } from "react-redux";
+import { actionCreactors, State } from "../State";
 
 export interface IHabit {
   name: string;
   color: string;
-  markedDays?: {
-    date: Date;
-    isMarked: boolean;
-  };
+  markedDays: number[];
+  id: number;
 }
 
 type IProps = {
   habit: IHabit;
 };
 
-function formatToMarkIcon() {
-  return (
-    <span className="cursor-pointer">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="mark h-6 w-6 text-gray-400 hover:text-gray-500 transition-colors"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          className=" pointer-events-none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
-    </span>
-  );
-}
-
-function markDay(value: Date, event: any) {
-  if (!event.target.classList.contains("mark")) {
-    return;
-  }
-  if (event.target.classList.contains("marked")) {
-    event.target.classList.remove("marked");
-  } else {
-    event.target.classList.add("marked");
-  }
-}
-
 function Habit({ habit }: IProps) {
+  const dispatch = useDispatch();
+
+  const { addingHabit, removingHabit, editingHabit, markingHabit } =
+    bindActionCreators(actionCreactors, dispatch);
+  const habitsState = useSelector((state: State) => state.habits);
+
+  function formatToMarkIcon(date: Date) {
+    let isMarked: boolean = habitsState.habits[habit.id].markedDays?.includes(
+      date.getTime()
+    )!;
+
+    return (
+      <span className="cursor-pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={`mark h-6 w-6 text-gray-400 hover:text-gray-500 transition-colors ${
+            isMarked ? "marked" : ""
+          }`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            className=" pointer-events-none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </span>
+    );
+  }
+
+  function markDay(date: Date, event: any) {
+    console.log(event.target);
+
+    if (!event.target.classList.contains("mark")) {
+      return;
+    }
+
+    let isMarked: boolean;
+    if (event.target.classList.contains("marked")) {
+      isMarked = false;
+    } else {
+      isMarked = true;
+    }
+    let habitId = event.target.closest(".habit").id;
+    markingHabit(date, habitId);
+  }
+  console.log("re");
+
   return (
     <div className="flex justify-between items-center shadow-md px-32">
       <h3
@@ -70,8 +91,7 @@ function Habit({ habit }: IProps) {
           minDetail="month"
           defaultView="month"
           showNeighboringMonth={false}
-          // showNavigation={false}
-          formatDay={formatToMarkIcon}
+          formatDay={(locale: string, date: Date) => formatToMarkIcon(date)}
         />
       </div>
     </div>

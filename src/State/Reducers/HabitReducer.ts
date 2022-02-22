@@ -13,18 +13,14 @@ const initialState: IHabits = {
     {
       name: "Early waking up",
       color: "#842ef2",
-      markedDays: {
-        date: new Date(),
-        isMarked: false,
-      },
+      markedDays: [],
+      id: 0,
     },
     {
       name: "Working out",
       color: "#242",
-      markedDays: {
-        date: new Date(),
-        isMarked: true,
-      },
+      markedDays: [],
+      id: 1,
     },
   ],
   isAddingHabit: false,
@@ -48,8 +44,30 @@ const habitReducer = (
     // case ActionType.EDITING:
     //   return state * action.payload;
 
-    // case ActionType.MARKING:
-    //   return state + action.payload;
+    case ActionType.MARKING:
+      let date = action.payload.date.getTime();
+      let newHabits: IHabit[] = state.habits.map((habit) => {
+        if (habit.id == action.payload.id) {
+          let isMarked: boolean =
+            state.habits[habit.id].markedDays?.includes(date)!;
+
+          // Removing the date from array.
+          if (isMarked) {
+            let newMarkedDays = habit.markedDays?.filter((day) => day !== date);
+            return {
+              ...habit,
+              markedDays: newMarkedDays,
+            };
+          }
+          // Adding the date to array.
+          return {
+            ...habit,
+            markedDays: [...habit.markedDays!, date],
+          };
+        }
+        return habit;
+      });
+      return { ...state, habits: newHabits };
 
     default:
       return state;

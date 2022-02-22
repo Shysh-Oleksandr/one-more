@@ -11,13 +11,14 @@ import Habit, { IHabit } from "./Habit";
 
 function Habits() {
   const dispatch = useDispatch();
-  const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const { addingHabit, removingHabit, editingHabit, markingHabit } =
     bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
 
   function changeMonth() {
+    console.log("change");
+
     document
       .querySelectorAll(
         ".marks .react-calendar__navigation__arrow:not([disabled])"
@@ -28,8 +29,6 @@ function Habits() {
   }
 
   useEffect(() => {
-    // console.log(ref);
-
     const prevBtn = document.querySelector(
       ".habits__calendar .react-calendar__navigation__prev-button"
     );
@@ -51,7 +50,6 @@ function Habits() {
           maxDate={getMaxDate()}
           minDate={getMinDate()}
           minDetail="month"
-          inputRef={ref}
           defaultView="month"
           prevLabel={<GrNext />}
           nextLabel={<GrPrevious />}
@@ -60,10 +58,10 @@ function Habits() {
           formatDay={(locale: string, date: Date) => getDayName(date, locale)}
         />
       </div>
-      <div className="">
+      <div className="habits__list">
         {habitsState.habits.map((habit: IHabit, index: number) => {
           return (
-            <div key={uuidv4()}>
+            <div key={uuidv4()} className="habit" id={habit.id.toString()}>
               <Habit habit={habit} />
             </div>
           );

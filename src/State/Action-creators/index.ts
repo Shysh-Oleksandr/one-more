@@ -30,11 +30,11 @@ export const editingHabit = (amount: number) => {
   };
 };
 
-export const markingHabit = (amount: number) => {
+export const markingHabit = (date: Date, id: number) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.MARKING,
-      payload: amount,
+      payload: { date, id },
     });
   };
 };
