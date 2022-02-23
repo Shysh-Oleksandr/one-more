@@ -26,9 +26,15 @@ interface SetIsAddingAction {
   payload: boolean;
 }
 
+interface ReorderAction {
+  type: ActionType.REORDER;
+  payload: IHabit[];
+}
+
 export type Action =
   | AddingAction
   | EditingAction
   | RemovingAction
   | MarkingAction
+  | ReorderAction
   | SetIsAddingAction;

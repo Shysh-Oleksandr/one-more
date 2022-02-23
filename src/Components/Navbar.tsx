@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { actionCreactors } from "../State";
 import { AiOutlinePlus } from "react-icons/ai";
 
-type Props = {};
-
-function Navbar({}: Props) {
+function Navbar() {
   const dispatch = useDispatch();
 
   const { setIsAddingHabit } = bindActionCreators(actionCreactors, dispatch);

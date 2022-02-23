@@ -5,6 +5,7 @@ import { actionCreactors, State } from "../State";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../Styles/addHabit.css";
+import { changeMonth } from "./Habits";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -25,6 +26,8 @@ function AddHabit() {
   } = useForm();
 
   useEffect(() => {
+    console.log("eff");
+
     const checkIfClickedOutside = (e: any) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
@@ -49,16 +52,30 @@ function AddHabit() {
     let habitName = getValues("name");
     let habitColor = getValues("color");
 
+    const isCurrentMonth =
+      document
+        .querySelector(
+          ".habits__calendar .react-calendar__navigation__next-button"
+        )
+        ?.getAttribute("disabled") === null
+        ? true
+        : false;
+    if (isCurrentMonth) {
+      const nextBtn: any = document.querySelector(
+        ".habits__calendar .react-calendar__navigation__next-button"
+      );
+      nextBtn!.click();
+    }
+
     addingHabit({
       name: habitName,
       color: habitColor,
       markedDays: [],
-      id: habitsState.habits[habitsState.habits.length - 1].id + 1,
+      id: habitsState.habits.length,
     });
 
     setIsAddingHabit(false);
   };
-
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div

@@ -38,6 +38,9 @@ const habitReducer = (
     case ActionType.ADDING:
       return { ...state, habits: [...state.habits, action.payload] };
 
+    case ActionType.REORDER:
+      return { ...state, habits: action.payload };
+
     // case ActionType.REMOVING:
     //   return state - action.payload;
 
@@ -50,6 +53,7 @@ const habitReducer = (
         if (habit.id == action.payload.id) {
           let isMarked: boolean =
             state.habits[habit.id].markedDays?.includes(date)!;
+          console.log(isMarked, state.habits, date);
 
           // Removing the date from array.
           if (isMarked) {
@@ -67,6 +71,7 @@ const habitReducer = (
         }
         return habit;
       });
+
       return { ...state, habits: newHabits };
 
     default:

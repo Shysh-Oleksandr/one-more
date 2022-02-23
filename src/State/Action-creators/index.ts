@@ -47,3 +47,12 @@ export const setIsAddingHabit = (statement: boolean) => {
     });
   };
 };
+
+export const reorderHabit = (habits: IHabit[]) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.REORDER,
+      payload: habits,
+    });
+  };
+};

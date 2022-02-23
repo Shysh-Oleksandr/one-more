@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  @apply overflow-x-hidden h-full;
+}
+
 body {
-  @apply overflow-hidden h-full;
+  @apply pb-10;
 }
