@@ -2,10 +2,14 @@ import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
 import { IHabit } from "./../../Components/Habit";
 
+export type HabitId = number | null;
+
 interface IHabits {
   habits: IHabit[];
   isAddingHabit: boolean;
   isEditingHabit: boolean;
+  isHabitOpened: boolean;
+  openedHabitId: HabitId;
 }
 
 const initialState: IHabits = {
@@ -25,6 +29,8 @@ const initialState: IHabits = {
   ],
   isAddingHabit: false,
   isEditingHabit: false,
+  isHabitOpened: false,
+  openedHabitId: null,
 };
 
 const habitReducer = (
@@ -34,6 +40,15 @@ const habitReducer = (
   switch (action.type) {
     case ActionType.SET_IS_ADDING:
       return { ...state, isAddingHabit: action.payload };
+
+    case ActionType.SET_IS_EDITING:
+      return { ...state, isEditingHabit: action.payload };
+
+    case ActionType.SET_IS_HABIT_OPENED:
+      return { ...state, isHabitOpened: action.payload };
+
+    case ActionType.SET_OPENED_HABIT_ID:
+      return { ...state, openedHabitId: action.payload };
 
     case ActionType.ADDING:
       return { ...state, habits: [...state.habits, action.payload] };
@@ -51,9 +66,11 @@ const habitReducer = (
       let date = action.payload.date.getTime();
       let newHabits: IHabit[] = state.habits.map((habit) => {
         if (habit.id == action.payload.id) {
-          let isMarked: boolean =
-            state.habits[habit.id].markedDays?.includes(date)!;
-          console.log(isMarked, state.habits, date);
+          console.log(state.habits);
+
+          let isMarked: boolean = state.habits
+            .find((value) => value.id === habit.id)!
+            .markedDays?.includes(date)!;
 
           // Removing the date from array.
           if (isMarked) {

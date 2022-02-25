@@ -26,8 +26,6 @@ function AddHabit() {
   } = useForm();
 
   useEffect(() => {
-    console.log("eff");
-
     const checkIfClickedOutside = (e: any) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu

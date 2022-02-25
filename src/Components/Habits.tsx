@@ -27,7 +27,6 @@ function Habits() {
 
   const { reorderHabit } = bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
-  const [habits, setHabits] = useState(habitsState.habits);
 
   useEffect(() => {
     const prevBtn = document.querySelector(
@@ -50,9 +49,7 @@ function Habits() {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    console.log(items);
     reorderHabit(items);
-    // setHabits(items);
   }
   return (
     <>

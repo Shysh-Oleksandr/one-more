@@ -19,20 +19,23 @@ type IProps = {
 function Habit({ habit }: IProps) {
   const dispatch = useDispatch();
 
-  const { markingHabit } = bindActionCreators(actionCreactors, dispatch);
+  const { markingHabit, setIsHabitOpened, setOpenedHabitId } =
+    bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
 
   function formatToMarkIcon(date: Date) {
-    let isMarked: boolean = habitsState.habits
-      .find((value) => value.id === habit.id)!
-      .markedDays?.includes(date.getTime())!;
+    const currentHabit: IHabit = habitsState.habits.find(
+      (value) => value.id === habit.id
+    )!;
+    let isMarked: boolean = currentHabit.markedDays?.includes(date.getTime())!;
 
     return (
       <span className="cursor-pointer">
         {isMarked ? (
           <svg
+            style={{ color: currentHabit.color }}
             xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-6 w-6 text-green-500 hover:text-green-600 transition-colors marked`}
+            className={`mark h-7 w-7  transition-colors marked`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -45,7 +48,7 @@ function Habit({ habit }: IProps) {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-6 w-6 text-gray-400 hover:text-gray-500 transition-colors 
+            className={`mark h-7 w-7 text-gray-400 hover:text-gray-500 transition-colors 
             `}
             fill="none"
             viewBox="0 0 24 24"
@@ -66,16 +69,22 @@ function Habit({ habit }: IProps) {
 
   function markDay(date: Date, event: any) {
     if (!event.target.classList.contains("mark")) return;
-    console.log("mark");
 
     let habitId = event.target.closest(".habit").id;
+
     markingHabit(date, habitId);
+  }
+
+  function openHabitStat() {
+    setIsHabitOpened(true);
+    setOpenedHabitId(habit.id);
   }
 
   return (
     <div className="flex justify-between items-center shadow-md px-32">
       <h3
-        className="basis-1/3 flex-grow flex-shrink-0 text-left"
+        onClick={openHabitStat}
+        className="cursor-pointer basis-1/3 flex-grow text-base flex-shrink-0 text-left"
         style={{ color: habit.color }}
       >
         {habit.name}
