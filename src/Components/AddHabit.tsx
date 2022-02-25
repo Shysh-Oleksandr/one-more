@@ -1,22 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { actionCreactors, State } from "../State";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
+import { actionCreactors, State } from "../State";
 import "../Styles/addHabit.css";
-import { changeMonth } from "./Habits";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const dispatch = useDispatch();
-
-  const { setIsAddingHabit, addingHabit } = bindActionCreators(
-    actionCreactors,
-    dispatch
-  );
+  const { setIsAddingHabit, addingHabit, setIsEditingHabit, editingHabit } =
+    bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
+
+  const currentHabit = habitsState.habits.find(
+    (value) => value.id === habitsState.openedHabitId
+  )!;
 
   const {
     register,
@@ -30,11 +29,12 @@ function AddHabit() {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
       if (
-        habitsState.isAddingHabit &&
+        (habitsState.isAddingHabit || habitsState.isEditingHabit) &&
         ref.current &&
         !ref.current.contains(e.target)
       ) {
         setIsAddingHabit(false);
+        setIsEditingHabit(false);
       }
     };
 
@@ -44,7 +44,7 @@ function AddHabit() {
       // Cleanup the event listener
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
-  }, [habitsState.isAddingHabit]);
+  }, [habitsState.isAddingHabit, habitsState.isEditingHabit]);
 
   const onSubmit = () => {
     let habitName = getValues("name");
@@ -65,15 +65,24 @@ function AddHabit() {
       nextBtn!.click();
     }
 
-    addingHabit({
-      name: habitName,
-      color: habitColor,
-      markedDays: [],
-      id: habitsState.habits.length,
-    });
+    habitsState.isAddingHabit
+      ? addingHabit({
+          name: habitName,
+          color: habitColor,
+          markedDays: [],
+          id: habitsState.habits.length,
+        })
+      : editingHabit({
+          name: habitName,
+          color: habitColor,
+          markedDays: currentHabit.markedDays,
+          id: currentHabit.id,
+        });
 
     setIsAddingHabit(false);
+    setIsEditingHabit(false);
   };
+
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div
@@ -81,11 +90,11 @@ function AddHabit() {
         ref={ref}
       >
         <h2
-          style={{ backgroundColor: getValues("color") }}
+          style={{ backgroundColor: currentHabit.color }}
           className="bg-slate-700 text-[1.7rem] leading-10 py-2 rounded-t-lg text-white"
         >
           {habitsState.isEditingHabit
-            ? "Editing the habit"
+            ? "Editing a habit"
             : "Adding a new habit"}
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -97,6 +106,7 @@ function AddHabit() {
               id="add-habit__name"
               placeholder="Work out"
               type="text"
+              defaultValue={habitsState.isEditingHabit ? currentHabit.name : ""}
               className="add-habit__input w-[65%]"
               {...register("name", { required: true, maxLength: 25 })}
             />
@@ -117,25 +127,21 @@ function AddHabit() {
             <input
               id="add-habit__color"
               type="color"
+              defaultValue={
+                habitsState.isEditingHabit ? currentHabit.color : "#475569"
+              }
               className="add-habit__input"
               {...register("color")}
             />
           </div>
 
           <button
+            style={{ backgroundColor: currentHabit.color }}
             className="w-5/6 text-2xl text-white shadow-lg leading-6 bg-slate-600 hover:bg-slate-500 rounded-md border-white border-[1px] font-bold transition-all mt-8 p-3"
             type="submit"
           >
             {habitsState.isEditingHabit ? "Edit" : "Add"}
           </button>
-          {habitsState.isEditingHabit && (
-            <button
-              type="button"
-              className="add-habit__btn add-habit__btn--delete"
-            >
-              Delete
-            </button>
-          )}
         </form>
       </div>
     </div>

@@ -13,20 +13,20 @@ export const addingHabit = (habitToAdd: IHabit) => {
   };
 };
 
-export const removingHabit = (amount: number) => {
+export const removingHabit = (id: number) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.REMOVING,
-      payload: amount,
+      payload: id,
     });
   };
 };
 
-export const editingHabit = (amount: number) => {
+export const editingHabit = (habitToEdit: IHabit) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.EDITING,
-      payload: amount,
+      payload: habitToEdit,
     });
   };
 };
@@ -58,20 +58,11 @@ export const setIsEditingHabit = (statement: boolean) => {
   };
 };
 
-export const setIsHabitOpened = (statement: boolean) => {
+export const setIsHabitOpened = (statement: boolean, id: HabitId = null) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SET_IS_HABIT_OPENED,
-      payload: statement,
-    });
-  };
-};
-
-export const setOpenedHabitId = (id: HabitId) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.SET_OPENED_HABIT_ID,
-      payload: id,
+      payload: { statement, id },
     });
   };
 };

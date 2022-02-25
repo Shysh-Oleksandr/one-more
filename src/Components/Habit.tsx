@@ -19,8 +19,10 @@ type IProps = {
 function Habit({ habit }: IProps) {
   const dispatch = useDispatch();
 
-  const { markingHabit, setIsHabitOpened, setOpenedHabitId } =
-    bindActionCreators(actionCreactors, dispatch);
+  const { markingHabit, setIsHabitOpened } = bindActionCreators(
+    actionCreactors,
+    dispatch
+  );
   const habitsState = useSelector((state: State) => state.habits);
 
   function formatToMarkIcon(date: Date) {
@@ -35,7 +37,7 @@ function Habit({ habit }: IProps) {
           <svg
             style={{ color: currentHabit.color }}
             xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-7 w-7  transition-colors marked`}
+            className={`mark h-7 w-7 hover:opacity-60  transition-opacity marked`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -76,12 +78,11 @@ function Habit({ habit }: IProps) {
   }
 
   function openHabitStat() {
-    setIsHabitOpened(true);
-    setOpenedHabitId(habit.id);
+    setIsHabitOpened(true, habit.id);
   }
 
   return (
-    <div className="flex justify-between items-center shadow-md px-32">
+    <div className="flex justify-between items-center shadow-md x-padding">
       <h3
         onClick={openHabitStat}
         className="cursor-pointer basis-1/3 flex-grow text-base flex-shrink-0 text-left"

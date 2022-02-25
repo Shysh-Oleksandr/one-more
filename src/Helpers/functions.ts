@@ -19,3 +19,10 @@ export function getMaxDate(): Date {
   maxDate.setDate(currentDate.getDate());
   return maxDate;
 }
+
+export function getDaysArray(s: Date, e: Date): Date[] {
+  for (var a = [], d = new Date(s); d <= e; d.setDate(d.getDate() + 1)) {
+    a.push(new Date(d));
+  }
+  return a;
+}

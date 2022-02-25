@@ -9,12 +9,12 @@ interface AddingAction {
 
 interface EditingAction {
   type: ActionType.EDITING;
-  payload?: number;
+  payload: IHabit;
 }
 
 interface RemovingAction {
   type: ActionType.REMOVING;
-  payload?: number;
+  payload: number;
 }
 
 interface MarkingAction {
@@ -34,12 +34,7 @@ interface SetIsEditingAction {
 
 interface SetIsHabitOpenedAction {
   type: ActionType.SET_IS_HABIT_OPENED;
-  payload: boolean;
-}
-
-interface SetOpenedHabitIdAction {
-  type: ActionType.SET_OPENED_HABIT_ID;
-  payload: HabitId;
+  payload: { statement: boolean; id?: HabitId };
 }
 
 interface ReorderAction {
@@ -55,5 +50,4 @@ export type Action =
   | ReorderAction
   | SetIsEditingAction
   | SetIsHabitOpenedAction
-  | SetOpenedHabitIdAction
   | SetIsAddingAction;

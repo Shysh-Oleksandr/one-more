@@ -4,7 +4,7 @@ import { IHabit } from "./../../Components/Habit";
 
 export type HabitId = number | null;
 
-interface IHabits {
+export interface IHabits {
   habits: IHabit[];
   isAddingHabit: boolean;
   isEditingHabit: boolean;
@@ -45,10 +45,11 @@ const habitReducer = (
       return { ...state, isEditingHabit: action.payload };
 
     case ActionType.SET_IS_HABIT_OPENED:
-      return { ...state, isHabitOpened: action.payload };
-
-    case ActionType.SET_OPENED_HABIT_ID:
-      return { ...state, openedHabitId: action.payload };
+      return {
+        ...state,
+        isHabitOpened: action.payload.statement,
+        openedHabitId: action.payload.id!,
+      };
 
     case ActionType.ADDING:
       return { ...state, habits: [...state.habits, action.payload] };
@@ -56,18 +57,32 @@ const habitReducer = (
     case ActionType.REORDER:
       return { ...state, habits: action.payload };
 
-    // case ActionType.REMOVING:
-    //   return state - action.payload;
+    case ActionType.EDITING:
+      var editedHabits: IHabit[] = state.habits.map((habit) => {
+        if (habit.id == action.payload.id) {
+          return action.payload;
+        }
+        return habit;
+      });
+      return { ...state, habits: editedHabits };
 
-    // case ActionType.EDITING:
-    //   return state * action.payload;
+    case ActionType.REMOVING:
+      const filteredHabits: IHabit[] = state.habits.filter(
+        (habit) => habit.id !== action.payload
+      );
+      return {
+        ...state,
+        habits: filteredHabits,
+        isHabitOpened: false,
+        openedHabitId: null,
+      };
 
     case ActionType.MARKING:
+      console.log(action.payload.date);
       let date = action.payload.date.getTime();
-      let newHabits: IHabit[] = state.habits.map((habit) => {
+      console.log(date);
+      const newHabits: IHabit[] = state.habits.map((habit) => {
         if (habit.id == action.payload.id) {
-          console.log(state.habits);
-
           let isMarked: boolean = state.habits
             .find((value) => value.id === habit.id)!
             .markedDays?.includes(date)!;

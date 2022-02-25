@@ -9,3 +9,11 @@ html {
 body {
   @apply pb-10;
 }
+
+.x-padding {
+  @apply px-32;
+}
+
+.icon-btn {
+  @apply hover:text-gray-300 transition-colors;
+}
