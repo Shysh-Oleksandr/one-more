@@ -1,5 +1,5 @@
 .add-habit__label {
-  @apply text-2xl text-[#475569] mr-1 ml-8 font-medium flex-shrink-0 flex-grow-0 basis-1/5;
+  @apply text-2xl text-[#475569] mr-1 ml-8 font-medium flex-shrink-0 text-left flex-grow-0 basis-1/4;
 }
 
 .add-habit__input {

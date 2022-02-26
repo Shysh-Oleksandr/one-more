@@ -23,7 +23,7 @@ function HistoryStat({}: Props) {
   )!;
 
   return (
-    <div className="history-stat pb-12 shadow-lg">
+    <div className="history-stat pb-12 shadow-lg x-padding">
       <h2 style={{ color: currentHabit.color }} className="stat-label">
         History
       </h2>

@@ -10,6 +10,7 @@ export interface IHabit {
   color: string;
   markedDays: number[];
   id: number;
+  question?: string;
 }
 
 type IProps = {

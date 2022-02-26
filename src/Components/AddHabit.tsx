@@ -52,6 +52,7 @@ function AddHabit() {
   const onSubmit = () => {
     let habitName = getValues("name");
     let habitColor = getValues("color");
+    let habitQuestion = getValues("question");
 
     const isCurrentMonth =
       document
@@ -74,12 +75,14 @@ function AddHabit() {
           color: habitColor,
           markedDays: [],
           id: habitsState.habits.length,
+          question: habitQuestion,
         })
       : editingHabit({
           name: habitName,
           color: habitColor,
           markedDays: currentHabit.markedDays,
           id: currentHabit.id,
+          question: habitQuestion,
         });
 
     setIsAddingHabit(false);
@@ -123,6 +126,21 @@ function AddHabit() {
               </span>
             )
           )}
+          <div className="add-habit__block">
+            <label className="add-habit__label" htmlFor="add-habit__name">
+              Question:
+            </label>
+            <input
+              id="add-habit__name"
+              placeholder="Did I work out today?"
+              type="text"
+              defaultValue={
+                habitsState.isEditingHabit ? currentHabit.question : ""
+              }
+              className="add-habit__input w-[65%]"
+              {...register("question")}
+            />
+          </div>
           <div className="add-habit__block">
             <label className="add-habit__label" htmlFor="add-habit__date">
               Color:
