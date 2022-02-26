@@ -60,3 +60,7 @@
 .main .habits__calendar .react-calendar__navigation__label {
   @apply text-xl first-letter:capitalize text-left;
 }
+
+.main .habit {
+  @apply m-[2px];
+}

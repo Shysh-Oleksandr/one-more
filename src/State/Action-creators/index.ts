@@ -84,3 +84,11 @@ export const reorderHabit = (habits: IHabit[]) => {
     });
   };
 };
+
+export const changeTheme = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.CHANGE_THEME,
+    });
+  };
+};

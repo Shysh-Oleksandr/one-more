@@ -11,6 +11,7 @@ export interface IHabits {
   isHabitOpened: boolean;
   isDeleteModalOpened: boolean;
   openedHabitId: HabitId;
+  theme: string;
 }
 
 const initialState: IHabits = {
@@ -33,6 +34,7 @@ const initialState: IHabits = {
   isHabitOpened: false,
   isDeleteModalOpened: false,
   openedHabitId: null,
+  theme: "light",
 };
 
 const habitReducer = (
@@ -48,6 +50,11 @@ const habitReducer = (
 
     case ActionType.SET_IS_DELETE_MODAL_OPENED:
       return { ...state, isDeleteModalOpened: action.payload };
+
+    case ActionType.CHANGE_THEME:
+      let newTheme = state.theme === "light" ? "dark" : "light";
+      console.log(newTheme);
+      return { ...state, theme: newTheme };
 
     case ActionType.SET_IS_HABIT_OPENED:
       return {

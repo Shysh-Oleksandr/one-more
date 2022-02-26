@@ -47,6 +47,10 @@ interface ReorderAction {
   payload: IHabit[];
 }
 
+interface ChangeThemeAction {
+  type: ActionType.CHANGE_THEME;
+}
+
 export type Action =
   | AddingAction
   | EditingAction
@@ -56,4 +60,5 @@ export type Action =
   | SetIsEditingAction
   | SetIsDeleteModalOpenedAction
   | SetIsHabitOpenedAction
+  | ChangeThemeAction
   | SetIsAddingAction;
