@@ -1,14 +1,13 @@
-.graphics svg {
-  @apply mx-auto;
-}
-
 .habit__stat .react-calendar {
   width: 350px;
   max-width: 100%;
   background: white;
-  border: 1px solid #a0a096;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
+}
+
+.stat-label {
+  @apply text-left ml-2 mb-4 mt-6 text-2xl;
 }
 
 .habit__stat .react-calendar__navigation {
@@ -58,6 +57,7 @@
   line-height: 28px;
   border-radius: 0.5rem;
   border: 1px solid #fff;
+  transition: all 0.3s ease;
 }
 
 .habit__stat .react-calendar__tile:enabled:hover {
@@ -75,5 +75,6 @@
   color: white;
 }
 .habit__stat .react-calendar__tile--marked:enabled:hover {
-  background: #1087ff;
+  opacity: 0.8;
+  background: var(--habit-color);
 }

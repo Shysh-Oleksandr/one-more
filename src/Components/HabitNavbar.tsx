@@ -12,7 +12,7 @@ type Props = {};
 function HabitNavbar({}: Props) {
   const dispatch = useDispatch();
 
-  const { setIsHabitOpened, setIsEditingHabit, removingHabit } =
+  const { setIsHabitOpened, setIsEditingHabit, setIsDeleteModalOpenedHabit } =
     bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
 
@@ -43,7 +43,7 @@ function HabitNavbar({}: Props) {
         </button>
         <button
           className="text-2xl icon-btn ml-6"
-          onClick={() => removingHabit(currentHabit.id)}
+          onClick={() => setIsDeleteModalOpenedHabit(true)}
         >
           <BsFillTrashFill />
         </button>

@@ -6,5 +6,6 @@ export enum ActionType {
   SET_IS_ADDING = "SetIsAdding",
   SET_IS_EDITING = "SetIsEditing",
   SET_IS_HABIT_OPENED = "SetIsHabitOpened",
+  SET_IS_DELETE_MODAL_OPENED = "SetIsDeleteModalOpened",
   REORDER = "Reorder",
 }

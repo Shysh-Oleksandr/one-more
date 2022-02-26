@@ -11,5 +11,5 @@
 }
 
 .add-habit__error {
-  @apply text-red-500 text-lg font-medium mt-2 block;
+  @apply text-red-500 text-lg font-medium mt-2 block text-center;
 }

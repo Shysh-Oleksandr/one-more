@@ -49,6 +49,15 @@ export const setIsAddingHabit = (statement: boolean) => {
   };
 };
 
+export const setIsDeleteModalOpenedHabit = (statement: boolean) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.SET_IS_DELETE_MODAL_OPENED,
+      payload: statement,
+    });
+  };
+};
+
 export const setIsEditingHabit = (statement: boolean) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({

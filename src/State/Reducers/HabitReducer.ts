@@ -9,6 +9,7 @@ export interface IHabits {
   isAddingHabit: boolean;
   isEditingHabit: boolean;
   isHabitOpened: boolean;
+  isDeleteModalOpened: boolean;
   openedHabitId: HabitId;
 }
 
@@ -30,6 +31,7 @@ const initialState: IHabits = {
   isAddingHabit: false,
   isEditingHabit: false,
   isHabitOpened: false,
+  isDeleteModalOpened: false,
   openedHabitId: null,
 };
 
@@ -43,6 +45,9 @@ const habitReducer = (
 
     case ActionType.SET_IS_EDITING:
       return { ...state, isEditingHabit: action.payload };
+
+    case ActionType.SET_IS_DELETE_MODAL_OPENED:
+      return { ...state, isDeleteModalOpened: action.payload };
 
     case ActionType.SET_IS_HABIT_OPENED:
       return {
@@ -75,6 +80,7 @@ const habitReducer = (
         habits: filteredHabits,
         isHabitOpened: false,
         openedHabitId: null,
+        isDeleteModalOpened: false,
       };
 
     case ActionType.MARKING:

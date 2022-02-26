@@ -1,4 +1,8 @@
 import {
+  AxesDirective,
+  AxisDirective,
+  BarSeries,
+  ColumnDirective,
   ChartComponent,
   ColumnSeries,
   DateTime,
@@ -19,27 +23,32 @@ function HistoryStat({}: Props) {
   )!;
 
   return (
-    <ChartComponent
-      className="graphics mt-4 -z-10"
-      palettes={[currentHabit.color]}
-      width={(window.innerWidth * 0.8).toString() + "px"}
-      primaryXAxis={{
-        valueType: "DateTime",
-        edgeLabelPlacement: "Shift",
-      }}
-      primaryYAxis={{ interval: 0 }}
-    >
-      <Inject services={[ColumnSeries, DateTime]} />
-      <SeriesCollectionDirective>
-        <SeriesDirective
-          dataSource={getData(habitsState)}
-          xName="date"
-          yName="value"
-          // marker={{ visible: true }}
-          type="Column"
-        />
-      </SeriesCollectionDirective>
-    </ChartComponent>
+    <div className="history-stat pb-12 shadow-lg">
+      <h2 style={{ color: currentHabit.color }} className="stat-label">
+        History
+      </h2>
+      <ChartComponent
+        className="graphics -z-10"
+        palettes={[currentHabit.color]}
+        width="90%"
+        primaryXAxis={{
+          valueType: "DateTime",
+          edgeLabelPlacement: "Shift",
+        }}
+        primaryYAxis={{ interval: 0 }}
+      >
+        <Inject services={[ColumnSeries, DateTime]} />
+        <SeriesCollectionDirective>
+          <SeriesDirective
+            dataSource={getData(habitsState)}
+            xName="date"
+            yName="value"
+            // marker={{ visible: true }}
+            type="Column"
+          />
+        </SeriesCollectionDirective>
+      </ChartComponent>
+    </div>
   );
 }
 

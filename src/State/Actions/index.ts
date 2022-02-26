@@ -32,6 +32,11 @@ interface SetIsEditingAction {
   payload: boolean;
 }
 
+interface SetIsDeleteModalOpenedAction {
+  type: ActionType.SET_IS_DELETE_MODAL_OPENED;
+  payload: boolean;
+}
+
 interface SetIsHabitOpenedAction {
   type: ActionType.SET_IS_HABIT_OPENED;
   payload: { statement: boolean; id?: HabitId };
@@ -49,5 +54,6 @@ export type Action =
   | MarkingAction
   | ReorderAction
   | SetIsEditingAction
+  | SetIsDeleteModalOpenedAction
   | SetIsHabitOpenedAction
   | SetIsAddingAction;

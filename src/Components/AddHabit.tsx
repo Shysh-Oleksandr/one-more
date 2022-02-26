@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreactors, State } from "../State";
 import "../Styles/addHabit.css";
+import { IHabit } from "./Habit";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -13,9 +14,11 @@ function AddHabit() {
     bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
 
-  const currentHabit = habitsState.habits.find(
-    (value) => value.id === habitsState.openedHabitId
-  )!;
+  const currentHabit: IHabit = habitsState.isEditingHabit
+    ? habitsState.habits.find(
+        (value) => value.id === habitsState.openedHabitId
+      )!
+    : { name: "", color: "#475569", markedDays: [], id: 0 };
 
   const {
     register,
@@ -91,7 +94,7 @@ function AddHabit() {
       >
         <h2
           style={{ backgroundColor: currentHabit.color }}
-          className="bg-slate-700 text-[1.7rem] leading-10 py-2 rounded-t-lg text-white"
+          className="text-[1.7rem] leading-10 text-center py-2 rounded-t-lg text-white"
         >
           {habitsState.isEditingHabit
             ? "Editing a habit"
@@ -137,7 +140,7 @@ function AddHabit() {
 
           <button
             style={{ backgroundColor: currentHabit.color }}
-            className="w-5/6 text-2xl text-white shadow-lg leading-6 bg-slate-600 hover:bg-slate-500 rounded-md border-white border-[1px] font-bold transition-all mt-8 p-3"
+            className="w-5/6 text-2xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md border-white border-[1px] font-bold transition-all hover:opacity-90 mt-8 p-3"
             type="submit"
           >
             {habitsState.isEditingHabit ? "Edit" : "Add"}

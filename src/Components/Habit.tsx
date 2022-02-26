@@ -85,7 +85,7 @@ function Habit({ habit }: IProps) {
     <div className="flex justify-between items-center shadow-md x-padding">
       <h3
         onClick={openHabitStat}
-        className="cursor-pointer basis-1/3 flex-grow text-base flex-shrink-0 text-left"
+        className="cursor-pointer basis-1/3 flex-grow text-base flex-shrink-0 leading-10 text-left transition-all hover:opacity-70"
         style={{ color: habit.color }}
       >
         {habit.name}
