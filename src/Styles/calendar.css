@@ -1,60 +1,62 @@
-.react-calendar__month-view__weekdays,
+.main .react-calendar__month-view__weekdays,
 .react-calendar__tile:disabled,
-.marks .react-calendar__navigation,
-.react-calendar__navigation__arrow:disabled {
+.main .marks .react-calendar__navigation,
+.main .react-calendar__navigation__arrow:disabled {
   @apply hidden !important;
 }
 
-.react-calendar__tile {
+.main .react-calendar__tile {
   @apply whitespace-pre-line m-0 flex-none pl-5 pr-[0.8rem] text-base  text-gray-500 font-medium cursor-default w-[57px] !important;
 }
 
-.habits__calendar .react-calendar {
+.main .habits__calendar .react-calendar {
   @apply bg-slate-200 flex px-32;
 }
 
-.react-calendar__month-view__days {
+.main .react-calendar__month-view__days {
   @apply flex-nowrap flex-row-reverse p-3 justify-end !important;
 }
 
-.habits__calendar .react-calendar__viewContainer {
+.main .habits__calendar .react-calendar__viewContainer {
   @apply basis-2/3 flex-grow flex-shrink ml-auto relative !important;
 }
 
-.habits__calendar .react-calendar__navigation {
+.main .habits__calendar .react-calendar__navigation {
   @apply basis-1/3 flex-grow flex-shrink-0 flex items-center;
 }
 
-.habits__calendar .react-calendar__navigation__arrow {
+.main .habits__calendar .react-calendar__navigation__arrow {
   @apply absolute top-1/2 text-xl transition-all;
   transform: translateY(-50%);
 }
 
-.habits__calendar .react-calendar__navigation__arrow polyline {
+.main .habits__calendar .react-calendar__navigation__arrow polyline {
   stroke: rgb(107, 114, 128);
   transition: all 0.3s 0s;
 }
 
-.habits__calendar .react-calendar__navigation__arrow:hover polyline {
+.main .habits__calendar .react-calendar__navigation__arrow:hover polyline {
   stroke: rgb(75 85 99);
 }
 
-.react-calendar__navigation__label {
+.main .react-calendar__navigation__label {
   color: rgb(75 85 99);
 }
 
-.habits__calendar .react-calendar__navigation__prev-button {
+.main .habits__calendar .react-calendar__navigation__prev-button {
   @apply -right-2;
 }
 
-.habits__calendar .react-calendar__navigation__next-button {
+.main .habits__calendar .react-calendar__navigation__next-button {
   @apply -left-2;
 }
 
-.habits__calendar .react-calendar__month-view__days__day--neighboringMonth {
+.main
+  .habits__calendar
+  .react-calendar__month-view__days__day--neighboringMonth {
   @apply text-green-500 cursor-pointer !important;
 }
 
-.habits__calendar .react-calendar__navigation__label {
+.main .habits__calendar .react-calendar__navigation__label {
   @apply text-xl first-letter:capitalize text-left;
 }

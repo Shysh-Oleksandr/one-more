@@ -22,7 +22,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="main">
       <Navbar />
       {habitsState.isAddingHabit && <AddHabit />}
       <Habits />

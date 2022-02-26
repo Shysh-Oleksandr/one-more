@@ -6,8 +6,12 @@ html {
   @apply overflow-x-hidden h-full;
 }
 
-body {
+#root {
   @apply pb-10;
+}
+
+:root {
+  --habit-color: #006edc;
 }
 
 .x-padding {

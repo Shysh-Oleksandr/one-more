@@ -6,10 +6,10 @@ export function getDayName(dateStr: Date, locale: string) {
   })} \n ${dateStr.getDate()}`;
 }
 
-export function getMinDate(): Date {
+export function getMinDate(daysBefore: number = DAYS_TO_SHOW): Date {
   const currentDate = new Date();
   var minDate = new Date(currentDate.getTime());
-  minDate.setDate(currentDate.getDate() - DAYS_TO_SHOW + 1);
+  minDate.setDate(currentDate.getDate() - daysBefore + 1);
   return minDate;
 }
 

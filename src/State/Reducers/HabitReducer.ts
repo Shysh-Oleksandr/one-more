@@ -78,9 +78,7 @@ const habitReducer = (
       };
 
     case ActionType.MARKING:
-      console.log(action.payload.date);
       let date = action.payload.date.getTime();
-      console.log(date);
       const newHabits: IHabit[] = state.habits.map((habit) => {
         if (habit.id == action.payload.id) {
           let isMarked: boolean = state.habits
