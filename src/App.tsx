@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import Habits from "./Components/Habits";
-import Navbar from "./Components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreactors, State } from "./State";
-import AddHabit from "./Components/AddHabit";
-import HabitNavbar from "./Components/HabitNavbar";
-import HabitStatistics from "./Components/HabitStatistics";
-import DeleteModal from "./Components/DeleteModal";
+import AddHabit from "./Components/Modals/AddHabit";
+import HabitNavbar from "./Components/HabitPage/HabitNavbar";
+import HabitStatistics from "./Components/HabitPage/HabitStatistics/HabitStatistics";
+import DeleteModal from "./Components/Modals/DeleteModal";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./Styles/globalStyles";
 import { darkTheme, lightTheme } from "./Styles/Themes";
 import { bindActionCreators } from "redux";
+import Navbar from "./Components/MainPage/Navbar";
+import Habits from "./Components/MainPage/Habits";
 
 function App() {
   const habitsState = useSelector((state: State) => state.habits);

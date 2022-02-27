@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Calendar from "react-calendar";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { v4 as uuidv4 } from "uuid";
-import { GrNext, GrPrevious } from "react-icons/gr";
-import { actionCreactors, State } from "../State";
-import "../Styles/calendar.css";
-import { getDayName, getMaxDate, getMinDate } from "./../Helpers/functions";
+import { getDayName, getMaxDate } from "../../Helpers/functions";
+import { actionCreactors, State } from "../../State";
+import "../../Styles/calendar.css";
+import { getMinDate } from "./../../Helpers/functions";
 import Habit, { IHabit } from "./Habit";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 export function changeMonth() {
   document
@@ -83,7 +83,7 @@ function Habits() {
           <Droppable droppableId="habits">
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {habitsState.habits.map((habit: IHabit, index) => {
+                {habitsState.habits.map((habit: IHabit, index: number) => {
                   if (!habit) return;
                   return (
                     <Draggable

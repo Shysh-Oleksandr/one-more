@@ -1,8 +1,4 @@
 import {
-  AxesDirective,
-  AxisDirective,
-  BarSeries,
-  ColumnDirective,
   ChartComponent,
   ColumnSeries,
   DateTime,
@@ -12,8 +8,8 @@ import {
 } from "@syncfusion/ej2-react-charts";
 import React from "react";
 import { useSelector } from "react-redux";
-import { State } from "../State";
-import { getData } from "./../Data/data";
+import { getData } from "../../../Data/data";
+import { State } from "../../../State";
 type Props = {};
 
 function HistoryStat({}: Props) {

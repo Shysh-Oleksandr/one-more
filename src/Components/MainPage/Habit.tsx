@@ -2,8 +2,9 @@ import React from "react";
 import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors, State } from "../State";
-import { getMaxDate, getMinDate } from "./../Helpers/functions";
+import { getMaxDate } from "../../Helpers/functions";
+import { actionCreactors, State } from "../../State";
+import { getMinDate } from "./../../Helpers/functions";
 
 export interface IHabit {
   name: string;
@@ -93,7 +94,6 @@ function Habit({ habit }: IProps) {
       </h3>
       <div className="marks flex basis-2/3 flex-grow flex-shrink flex-nowrap">
         <Calendar
-          // activeStartDate={getMaxDate()}
           maxDate={getMaxDate()}
           minDate={getMinDate()}
           onClickDay={(value, event) => markDay(value, event)}

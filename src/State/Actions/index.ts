@@ -1,6 +1,6 @@
+import { IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { HabitId } from "../Reducers/HabitReducer";
-import { IHabit } from "./../../Components/Habit";
 
 interface AddingAction {
   type: ActionType.ADDING;

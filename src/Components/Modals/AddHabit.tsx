@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors, State } from "../State";
-import "../Styles/addHabit.css";
-import { IHabit } from "./Habit";
+import { actionCreactors, State } from "../../State";
+import { IHabit } from "../MainPage/Habit";
+import "../../Styles/addHabit.css";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;

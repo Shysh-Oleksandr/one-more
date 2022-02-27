@@ -1,9 +1,9 @@
 import React from "react";
-import "../Styles/statistics.css";
-import HistoryStat from "./HistoryStat";
-import CalendarStat from "./CalendarStat";
 import { useSelector } from "react-redux";
-import { State } from "../State";
+import { State } from "../../../State";
+import "../../../Styles/statistics.css";
+import CalendarStat from "./CalendarStat";
+import HistoryStat from "./HistoryStat";
 
 function HabitStatistics() {
   const habitsState = useSelector((state: State) => state.habits);

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { actionCreactors, State } from "../State";
+import { actionCreactors, State } from "../../State";
 import { bindActionCreators } from "redux";
 import { useSelector } from "react-redux";
 

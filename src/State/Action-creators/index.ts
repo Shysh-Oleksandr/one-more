@@ -1,8 +1,8 @@
 import { Dispatch } from "redux";
+import { IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
 import { HabitId } from "../Reducers/HabitReducer";
-import { IHabit } from "./../../Components/Habit";
 
 export const addingHabit = (habitToAdd: IHabit) => {
   return (dispatch: Dispatch<Action>) => {

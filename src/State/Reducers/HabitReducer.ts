@@ -1,6 +1,6 @@
+import { IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
-import { IHabit } from "./../../Components/Habit";
 
 export type HabitId = number | null;
 
@@ -15,20 +15,7 @@ export interface IHabits {
 }
 
 const initialState: IHabits = {
-  habits: [
-    {
-      name: "Early waking up",
-      color: "#842ef2",
-      markedDays: [],
-      id: 0,
-    },
-    {
-      name: "Working out",
-      color: "#242",
-      markedDays: [],
-      id: 1,
-    },
-  ],
+  habits: [],
   isAddingHabit: false,
   isEditingHabit: false,
   isHabitOpened: false,

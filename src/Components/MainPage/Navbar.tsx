@@ -1,17 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors } from "../State";
 import { AiOutlinePlus } from "react-icons/ai";
-import ThemeModeBtn from "./ThemeModeBtn";
+import ThemeModeBtn from "./../Modals/ThemeModeBtn";
+import { actionCreactors } from "../../State";
 
 function Navbar() {
   const dispatch = useDispatch();
 
-  const { setIsAddingHabit, changeTheme } = bindActionCreators(
-    actionCreactors,
-    dispatch
-  );
+  const { setIsAddingHabit } = bindActionCreators(actionCreactors, dispatch);
   return (
     <div className="flex navbar justify-between x-padding py-4 bg-gray-600 text-white">
       <h2 className="md:text-3xl sm:text-2xl text-xl font-bold">Habits</h2>

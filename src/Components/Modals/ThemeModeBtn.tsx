@@ -2,7 +2,7 @@ import React from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors, State } from "../State";
+import { actionCreactors, State } from "../../State";
 import { useSelector } from "react-redux";
 
 function ThemeModeBtn() {

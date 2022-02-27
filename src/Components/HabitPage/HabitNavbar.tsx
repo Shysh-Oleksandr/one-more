@@ -3,8 +3,8 @@ import { BsArrowLeft, BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors, State } from "../State";
-import ThemeModeBtn from "./ThemeModeBtn";
+import { actionCreactors, State } from "../../State";
+import ThemeModeBtn from "../Modals/ThemeModeBtn";
 
 type Props = {};
 
