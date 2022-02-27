@@ -45,8 +45,6 @@ function Habits() {
     const sourceScrollDiv = document.querySelector(".main .habits__calendar");
     const targetDivs = document.querySelectorAll(".main .habit");
 
-    console.log(sourceScrollDiv, targetDivs);
-
     sourceScrollDiv?.addEventListener("scroll", () => {
       targetDivs.forEach((targetDiv) => {
         targetDiv.scrollLeft = sourceScrollDiv.scrollLeft;

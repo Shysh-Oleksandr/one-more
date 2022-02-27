@@ -19,6 +19,8 @@ export const lightTheme = {
   calendarStatTileDisabledBtn: "#212121",
   calendarStatTileDisabledBtnBg: "#f0f0f0",
   chartFillBg: "#fafafa",
+  scrollBarTrackBg: "#e2e8f0",
+  scrollBarThumbBg: "#888",
 };
 export const darkTheme = {
   body: "#212121",
@@ -41,6 +43,8 @@ export const darkTheme = {
   calendarStatTileDisabledBtn: "#9c9c9c",
   calendarStatTileDisabledBtnBg: "#212121",
   chartFillBg: "#303030",
+  scrollBarTrackBg: "#212121",
+  scrollBarThumbBg: "#303030",
 };
 
 export type ThemeType = typeof lightTheme;

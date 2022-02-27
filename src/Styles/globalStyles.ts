@@ -76,4 +76,16 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   #chart_57723_1_ChartBorder {
     fill: ${({ theme }) => theme.chartFillBg};
   }
+  @media screen and (min-width: 767.98px) {
+    /* Track */
+    .main .habits__calendar::-webkit-scrollbar-track {
+      background: ${({ theme }) => theme.scrollBarTrackBg};
+    }
+
+    /* Handle */
+    .main .habits__calendar::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.scrollBarThumbBg};
+    }
+  }
+
   `;

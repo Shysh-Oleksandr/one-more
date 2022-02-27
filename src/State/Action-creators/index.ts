@@ -92,3 +92,11 @@ export const changeTheme = () => {
     });
   };
 };
+
+export const resetState = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.RESET_STATE,
+    });
+  };
+};

@@ -51,6 +51,10 @@ interface ChangeThemeAction {
   type: ActionType.CHANGE_THEME;
 }
 
+interface ResetStateAction {
+  type: ActionType.RESET_STATE;
+}
+
 export type Action =
   | AddingAction
   | EditingAction
@@ -61,4 +65,5 @@ export type Action =
   | SetIsDeleteModalOpenedAction
   | SetIsHabitOpenedAction
   | ChangeThemeAction
+  | ResetStateAction
   | SetIsAddingAction;

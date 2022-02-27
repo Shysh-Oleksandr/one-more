@@ -9,4 +9,5 @@ export enum ActionType {
   SET_IS_DELETE_MODAL_OPENED = "SetIsDeleteModalOpened",
   REORDER = "Reorder",
   CHANGE_THEME = "ChangeTheme",
+  RESET_STATE = "ResetState",
 }

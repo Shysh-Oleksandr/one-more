@@ -42,6 +42,16 @@ const habitReducer = (
   action: Action
 ): IHabits => {
   switch (action.type) {
+    case ActionType.RESET_STATE:
+      return {
+        ...state,
+        isAddingHabit: false,
+        isEditingHabit: false,
+        isHabitOpened: false,
+        isDeleteModalOpened: false,
+        openedHabitId: null,
+      };
+
     case ActionType.SET_IS_ADDING:
       return { ...state, isAddingHabit: action.payload };
 
@@ -53,7 +63,6 @@ const habitReducer = (
 
     case ActionType.CHANGE_THEME:
       let newTheme = state.theme === "light" ? "dark" : "light";
-      console.log(newTheme);
       return { ...state, theme: newTheme };
 
     case ActionType.SET_IS_HABIT_OPENED:
