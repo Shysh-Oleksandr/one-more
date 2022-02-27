@@ -51,7 +51,7 @@ function Habit({ habit }: IProps) {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-7 w-7 text-gray-400 hover:text-gray-500 transition-colors 
+            className={`mark h-7 w-7 text-gray-500 hover:text-gray-400 transition-colors 
             `}
             fill="none"
             viewBox="0 0 24 24"

@@ -6,7 +6,7 @@
 }
 
 .main .react-calendar__tile {
-  @apply whitespace-pre-line m-0 flex-none pl-5 pr-[0.8rem] text-base  text-gray-500 font-medium cursor-default w-[57px] !important;
+  @apply whitespace-pre-line m-0 flex-none pl-5 pr-[0.6rem] text-base  text-gray-500 font-medium cursor-default w-[57px] !important;
 }
 
 .main .habits__calendar .react-calendar {
@@ -62,5 +62,5 @@
 }
 
 .main .habit {
-  @apply m-[2px];
+  @apply m-[3px];
 }

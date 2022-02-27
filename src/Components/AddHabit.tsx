@@ -28,6 +28,8 @@ function AddHabit() {
   } = useForm();
 
   useEffect(() => {
+    document.documentElement.classList.add("stop-scrolling");
+
     const checkIfClickedOutside = (e: any) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
@@ -45,6 +47,7 @@ function AddHabit() {
 
     return () => {
       // Cleanup the event listener
+      document.documentElement.classList.remove("stop-scrolling");
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [habitsState.isAddingHabit, habitsState.isEditingHabit]);
@@ -92,13 +95,10 @@ function AddHabit() {
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div
-        className="basis-2/5 rounded-lg bg-white m-8 pb-8 shadow-2xl shadow-slate-700"
+        className="add-habit basis-2/5 rounded-lg bg-white m-8 pb-8"
         ref={ref}
       >
-        <h2
-          style={{ backgroundColor: currentHabit.color }}
-          className="text-[1.7rem] leading-10 text-center py-2 rounded-t-lg text-white"
-        >
+        <h2 className="add-habit-label text-[1.7rem] leading-10 text-center py-2 rounded-t-lg text-white">
           {habitsState.isEditingHabit
             ? "Editing a habit"
             : "Adding a new habit"}
@@ -149,7 +149,7 @@ function AddHabit() {
               id="add-habit__color"
               type="color"
               defaultValue={
-                habitsState.isEditingHabit ? currentHabit.color : "#475569"
+                habitsState.isEditingHabit ? currentHabit.color : "#64b5f6"
               }
               className="add-habit__input"
               {...register("color")}
@@ -157,8 +157,7 @@ function AddHabit() {
           </div>
 
           <button
-            style={{ backgroundColor: currentHabit.color }}
-            className="w-5/6 text-2xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md border-white border-[1px] font-bold transition-all hover:opacity-90 mt-8 p-3"
+            className="submit-btn w-5/6 text-2xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md font-bold transition-opacity hover:opacity-80 mt-8 p-3"
             type="submit"
           >
             {habitsState.isEditingHabit ? "Edit" : "Add"}

@@ -7,7 +7,11 @@
 }
 
 .stat-label {
-  @apply text-left ml-2 mb-4 mt-6 text-2xl;
+  @apply text-left pl-2 pb-4 pt-6 text-2xl;
+}
+
+.stat {
+  @apply m-1;
 }
 
 .habit__stat .react-calendar__navigation {

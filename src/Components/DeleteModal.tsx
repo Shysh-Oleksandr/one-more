@@ -18,6 +18,8 @@ function DeleteModal() {
   )!;
 
   useEffect(() => {
+    document.documentElement.classList.add("stop-scrolling");
+
     const checkIfClickedOutside = (e: any) => {
       if (
         habitsState.isDeleteModalOpened &&
@@ -30,6 +32,7 @@ function DeleteModal() {
     document.addEventListener("mousedown", checkIfClickedOutside);
     return () => {
       // Cleanup the event listener
+      document.documentElement.classList.remove("stop-scrolling");
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [habitsState.isDeleteModalOpened]);
@@ -37,7 +40,7 @@ function DeleteModal() {
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div
-        className="basis-2/5 rounded-lg bg-white m-8 px-8 pt-8 pb-6 shadow-2xl shadow-slate-700 text-left"
+        className="basis-2/5 add-habit rounded-lg bg-white m-8 px-8 pt-8 pb-6 shadow-2xl shadow-slate-700 text-left"
         ref={ref}
       >
         <h3 className="font-bold mb-3 text-3xl">Delete the habit?</h3>
@@ -47,13 +50,13 @@ function DeleteModal() {
         <div className="confirm-btns flex justify-end mt-5">
           <button
             onClick={() => setIsDeleteModalOpenedHabit(false)}
-            className="text-xl uppercase px-8 py-2 hover:bg-slate-300 transition-colors"
+            className="confirm-btn"
           >
             No
           </button>
           <button
             onClick={() => removingHabit(currentHabit.id)}
-            className="text-xl uppercase px-8 py-2 hover:bg-slate-300 transition-colors"
+            className="confirm-btn"
           >
             Yes
           </button>

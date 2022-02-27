@@ -1,10 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { BsArrowLeft, BsFillTrashFill } from "react-icons/bs";
+import { MdEdit } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreactors, State } from "../State";
-import { useSelector } from "react-redux";
-import { MdEdit } from "react-icons/md";
-import { BsFillTrashFill, BsArrowLeft } from "react-icons/bs";
 import ThemeModeBtn from "./ThemeModeBtn";
 
 type Props = {};
@@ -12,12 +11,8 @@ type Props = {};
 function HabitNavbar({}: Props) {
   const dispatch = useDispatch();
 
-  const {
-    setIsHabitOpened,
-    changeTheme,
-    setIsEditingHabit,
-    setIsDeleteModalOpenedHabit,
-  } = bindActionCreators(actionCreactors, dispatch);
+  const { setIsHabitOpened, setIsEditingHabit, setIsDeleteModalOpenedHabit } =
+    bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
 
   const currentHabit = habitsState.habits.find(
@@ -26,8 +21,11 @@ function HabitNavbar({}: Props) {
 
   return (
     <div
-      style={{ backgroundColor: currentHabit.color }}
-      className="flex items-center justify-between x-padding py-3 text-white"
+      style={{
+        backgroundColor:
+          habitsState.theme === "light" ? currentHabit.color : "#101010",
+      }}
+      className="habit-navbar flex items-center justify-between x-padding py-3 text-white"
     >
       <div className="flex">
         <button

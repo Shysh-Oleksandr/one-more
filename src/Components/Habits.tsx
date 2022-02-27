@@ -51,9 +51,10 @@ function Habits() {
 
     reorderHabit(items);
   }
+
   return (
     <>
-      <div className="habits__calendar">
+      <div className="habits__calendar shadow-md">
         <Calendar
           defaultActiveStartDate={getMaxDate()}
           maxDate={getMaxDate()}
@@ -74,6 +75,7 @@ function Habits() {
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
                 {habitsState.habits.map((habit: IHabit) => {
+                  if (!habit) return;
                   return (
                     <Draggable
                       key={habit.id}

@@ -23,12 +23,12 @@ function HistoryStat({}: Props) {
   )!;
 
   return (
-    <div className="history-stat pb-12 shadow-lg x-padding">
+    <div className="history-stat stat pb-12 shadow-lg x-padding">
       <h2 style={{ color: currentHabit.color }} className="stat-label">
         History
       </h2>
       <ChartComponent
-        className="graphics -z-10"
+        className="graphics !static"
         palettes={[currentHabit.color]}
         width="90%"
         primaryXAxis={{

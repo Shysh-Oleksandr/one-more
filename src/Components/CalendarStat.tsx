@@ -30,7 +30,7 @@ function CalendarStat() {
   }, [currentHabit]);
 
   return (
-    <div className="calendar-stat pb-12 shadow-md x-padding">
+    <div className="calendar-stat stat pb-12 shadow-md x-padding">
       <h2 style={{ color: currentHabit.color }} className="stat-label">
         Calendar
       </h2>

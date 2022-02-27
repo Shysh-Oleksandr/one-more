@@ -13,3 +13,7 @@
 .add-habit__error {
   @apply text-red-500 text-lg font-medium mt-2 block text-center;
 }
+
+.add-habit {
+  box-shadow: 0 20px 140px -10px var(--habit-color);
+}

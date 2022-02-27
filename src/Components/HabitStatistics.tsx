@@ -17,7 +17,7 @@ function HabitStatistics() {
       {currentHabit.question && (
         <h3
           style={{ color: currentHabit.color }}
-          className="bg-slate-200 text-xl py-3 x-padding shadow-lg"
+          className="habit-question bg-slate-200 text-xl py-3 x-padding shadow-md"
         >
           {currentHabit.question}
         </h3>
