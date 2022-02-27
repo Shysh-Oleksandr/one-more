@@ -41,6 +41,17 @@ function Habits() {
 
     cont?.append(prevBtn!);
     cont?.prepend(nextBtn!);
+
+    const sourceScrollDiv = document.querySelector(".main .habits__calendar");
+    const targetDivs = document.querySelectorAll(".main .habit");
+
+    console.log(sourceScrollDiv, targetDivs);
+
+    sourceScrollDiv?.addEventListener("scroll", () => {
+      targetDivs.forEach((targetDiv) => {
+        targetDiv.scrollLeft = sourceScrollDiv.scrollLeft;
+      });
+    });
   }, []);
 
   function handleOnDragEnd(result: any) {
@@ -74,13 +85,13 @@ function Habits() {
           <Droppable droppableId="habits">
             {(provided) => (
               <ul {...provided.droppableProps} ref={provided.innerRef}>
-                {habitsState.habits.map((habit: IHabit) => {
+                {habitsState.habits.map((habit: IHabit, index) => {
                   if (!habit) return;
                   return (
                     <Draggable
                       key={habit.id}
                       draggableId={habit.id.toString()}
-                      index={habit.id}
+                      index={index}
                     >
                       {(provided) => (
                         <li

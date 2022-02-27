@@ -60,5 +60,17 @@
 }
 
 .main .habit {
-  @apply m-[3px];
+  @apply m-[3px] overflow-x-auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.main .habit::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.main .habits__calendar {
+  @apply overflow-x-auto;
 }
