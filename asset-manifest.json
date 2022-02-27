@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/one-more/static/css/main.0a074fde.css",
+    "main.js": "/one-more/static/js/main.28e92824.js",
+    "index.html": "/one-more/index.html",
+    "main.0a074fde.css.map": "/one-more/static/css/main.0a074fde.css.map",
+    "main.28e92824.js.map": "/one-more/static/js/main.28e92824.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a074fde.css",
+    "static/js/main.28e92824.js"
+  ]
+}
