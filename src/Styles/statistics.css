@@ -68,17 +68,17 @@
   background-color: #e6e6e6;
 }
 .habit__stat .react-calendar__tile--now {
-  background: #ffff76;
+  background: #ffff76 !important;
 }
 .habit__stat .react-calendar__tile--now:enabled:hover {
-  background: #ffffa9;
+  background: #ffffa9 !important;
 }
 
 .habit__stat .react-calendar__tile--marked {
-  background: var(--habit-color);
-  color: white;
+  background: var(--habit-color) !important;
+  color: #fff !important;
 }
 .habit__stat .react-calendar__tile--marked:enabled:hover {
   opacity: 0.8;
-  background: var(--habit-color);
+  background: var(--habit-color) !important;
 }

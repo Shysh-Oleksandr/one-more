@@ -29,7 +29,6 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   .add-habit {
     background: ${({ theme }) => theme.addHabitBg};
     color: ${({ theme }) => theme.addHabitText};
-
   }
   .add-habit__label, .add-habit__input {
     color: ${({ theme }) => theme.addHabitText};
@@ -42,5 +41,39 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   }
   .confirm-btn:hover {
     background: ${({ theme }) => theme.confirmButtonBg};
+  }
+  .habit__stat .react-calendar {
+    background: ${({ theme }) => theme.addHabitBg};
+  }
+  .habit__stat .react-calendar__tile {
+    border-color: ${({ theme }) => theme.addHabitBg};
+  }
+  .habit__stat .react-calendar__tile:enabled {
+    background: ${({ theme }) => theme.calendarStatTileBg};
+    color: ${({ theme }) => theme.calendarStatTileColor};
+  }
+  .habit__stat .react-calendar__month-view__weekdays__weekday {
+    color: ${({ theme }) => theme.calendarStatTileColor};
+  }
+  .habit__stat .react-calendar__navigation button:enabled {
+    background: ${({ theme }) => theme.calendarStatTileBg};
+    color: ${({ theme }) => theme.calendarStatTileDisabledBtn};
+  }
+  .habit__stat .react-calendar__tile:enabled:hover,
+  .habit__stat .react-calendar__navigation button:enabled:hover {
+    background: ${({ theme }) => theme.calendarStatTileBgHover};
+  }
+
+  .habit__stat .react-calendar__navigation button:disabled {
+    background: ${({ theme }) => theme.calendarStatTileDisabledBtnBg};
+    color: ${({ theme }) => theme.calendarStatTileDisabledBtn};
+  }
+
+  .theme-mode-btn .ball {
+    background: ${({ theme }) => theme.themeModeBallBg};
+  }
+
+  #chart_57723_1_ChartBorder {
+    fill: ${({ theme }) => theme.chartFillBg};
   }
   `;
