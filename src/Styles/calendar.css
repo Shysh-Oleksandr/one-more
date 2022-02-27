@@ -10,7 +10,7 @@
 }
 
 .main .habits__calendar .react-calendar {
-  @apply bg-slate-200 flex px-32;
+  @apply flex;
 }
 
 .main .react-calendar__month-view__days {
@@ -26,21 +26,19 @@
 }
 
 .main .habits__calendar .react-calendar__navigation__arrow {
-  @apply absolute top-1/2 text-xl transition-all;
-  transform: translateY(-50%);
+  @apply absolute top-1/2 text-xl transition-all translate-y-[-50%];
 }
 
 .main .habits__calendar .react-calendar__navigation__arrow polyline {
-  stroke: rgb(107, 114, 128);
-  transition: all 0.3s 0s;
+  @apply stroke-[#6b7280];
 }
 
 .main .habits__calendar .react-calendar__navigation__arrow:hover polyline {
-  stroke: rgb(75 85 99);
+  @apply stroke-[#4b5563];
 }
 
 .main .react-calendar__navigation__label {
-  color: rgb(75 85 99);
+  @apply text-[#4b5563];
 }
 
 .main .habits__calendar .react-calendar__navigation__prev-button {
@@ -58,7 +56,7 @@
 }
 
 .main .habits__calendar .react-calendar__navigation__label {
-  @apply text-xl first-letter:capitalize text-left;
+  @apply sm:text-xl text-lg first-letter:capitalize text-left;
 }
 
 .main .habit {

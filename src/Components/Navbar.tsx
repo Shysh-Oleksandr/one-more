@@ -13,8 +13,8 @@ function Navbar() {
     dispatch
   );
   return (
-    <div className="flex navbar justify-between x-padding py-3 bg-gray-600 text-white">
-      <h2 className="text-3xl font-bold">Habits</h2>
+    <div className="flex navbar justify-between x-padding py-4 bg-gray-600 text-white">
+      <h2 className="md:text-3xl sm:text-2xl text-xl font-bold">Habits</h2>
       <div className="navbar-btns flex">
         <ThemeModeBtn />
         <button

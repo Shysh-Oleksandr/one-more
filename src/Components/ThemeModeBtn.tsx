@@ -11,7 +11,7 @@ function ThemeModeBtn() {
   const { changeTheme } = bindActionCreators(actionCreactors, dispatch);
   const habitsState = useSelector((state: State) => state.habits);
   return (
-    <button className="mr-8">
+    <button className="md:mr-8 mr-4">
       <input
         onChange={() => changeTheme()}
         type="checkbox"

@@ -11,11 +11,11 @@ html {
 }
 
 #root {
-  @apply pb-10;
+  @apply lg:pb-8 md:pb-4 sm:pb-3 pb-2;
 }
 
 * {
-  transition: all 0.15s ease;
+  @apply transition-all ease-in-out;
 }
 
 :root {
@@ -23,7 +23,7 @@ html {
 }
 
 .x-padding {
-  @apply px-32;
+  @apply xl:px-32 lg:px-28 md:px-12 sm:px-4 px-3;
 }
 
 .icon-btn {
@@ -31,43 +31,27 @@ html {
 }
 
 .theme-mode-btn {
-  background-color: #fff;
-  border-radius: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  position: relative;
-  height: 26px;
-  width: 50px;
-  transition: all 0.15s ease;
-  transform: scale(1.5);
+  @apply bg-white rounded-[50px] cursor-pointer flex items-center justify-between p-[5px] relative h-[26px] w-[50px] md:scale-150 sm:scale-125 scale-110;
 }
 
 .theme-mode-btn i {
-  font-size: 1rem;
+  @apply text-base;
 }
 
 .theme-mode-checkbox {
-  opacity: 0;
-  position: absolute;
+  @apply absolute opacity-0;
 }
 
 .theme-mode-checkbox:checked + .theme-mode-btn .ball {
-  transform: translateX(24px);
+  @apply translate-x-6;
 }
 
 .theme-mode-btn .ball {
-  background-color: #4b5563;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  height: 22px;
-  width: 22px;
-  transform: translateX(0px);
-  transition: all 0.15s ease;
+  @apply rounded-full absolute top-[2px] left-[2px] h-[22px] w-[22px] translate-x-0;
+}
+
+.main .theme-mode-btn .ball {
+  @apply !bg-[#4b5563];
 }
 
 .confirm-btn {

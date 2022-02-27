@@ -40,14 +40,16 @@ function DeleteModal() {
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div
-        className="basis-2/5 add-habit rounded-lg bg-white m-8 px-8 pt-8 pb-6 shadow-2xl shadow-slate-700 text-left"
+        className="add-habit md:px-8 px-6 md:pt-8 pt-6 md:pb-6 !pb-5 text-left"
         ref={ref}
       >
-        <h3 className="font-bold mb-3 text-3xl">Delete the habit?</h3>
-        <p className="text-xl">
+        <h3 className="font-bold mb-3 md:text-3xl text-2xl">
+          Delete the habit?
+        </h3>
+        <p className="md:text-xl text-lg">
           The habit will be removed forever. This action cannot be undone.
         </p>
-        <div className="confirm-btns flex justify-end mt-5">
+        <div className="confirm-btns flex justify-end md:mt-5 mt-3">
           <button
             onClick={() => setIsDeleteModalOpenedHabit(false)}
             className="confirm-btn"

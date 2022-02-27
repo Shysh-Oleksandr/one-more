@@ -94,11 +94,8 @@ function AddHabit() {
 
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
-      <div
-        className="add-habit basis-2/5 rounded-lg bg-white m-8 pb-8"
-        ref={ref}
-      >
-        <h2 className="add-habit-label text-[1.7rem] leading-10 text-center py-2 rounded-t-lg text-white">
+      <div className="add-habit" ref={ref}>
+        <h2 className="add-habit-label lg:text-[1.7rem] text-[1.6rem] leading-10 text-center py-2 rounded-t-lg text-white">
           {habitsState.isEditingHabit
             ? "Editing a habit"
             : "Adding a new habit"}
@@ -114,7 +111,7 @@ function AddHabit() {
               type="text"
               defaultValue={habitsState.isEditingHabit ? currentHabit.name : ""}
               className="add-habit__input w-[65%]"
-              {...register("name", { required: true, maxLength: 25 })}
+              {...register("name", { required: true, maxLength: 20 })}
             />
           </div>
           {errors.name?.type === "required" ? (
@@ -122,7 +119,7 @@ function AddHabit() {
           ) : (
             errors.name?.type === "maxLength" && (
               <span className="add-habit__error">
-                Habit name must be no longer than 25 characters
+                Habit name must be no longer than 20 characters
               </span>
             )
           )}
@@ -157,7 +154,7 @@ function AddHabit() {
           </div>
 
           <button
-            className="submit-btn w-5/6 text-2xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md font-bold transition-opacity hover:opacity-80 mt-8 p-3"
+            className="submit-btn w-5/6 md:text-2xl text-xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md font-bold transition-opacity hover:opacity-80 mt-8 md:p-3 p-2"
             type="submit"
           >
             {habitsState.isEditingHabit ? "Edit" : "Add"}

@@ -30,7 +30,7 @@ function HistoryStat({}: Props) {
       <ChartComponent
         className="graphics !static"
         palettes={[currentHabit.color]}
-        width="90%"
+        width="100%"
         primaryXAxis={{
           valueType: "DateTime",
           edgeLabelPlacement: "Shift",

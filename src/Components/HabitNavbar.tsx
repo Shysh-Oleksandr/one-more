@@ -25,7 +25,7 @@ function HabitNavbar({}: Props) {
         backgroundColor:
           habitsState.theme === "light" ? currentHabit.color : "#101010",
       }}
-      className="habit-navbar flex items-center justify-between x-padding py-3 text-white"
+      className="habit-navbar flex items-center justify-between x-padding py-4 text-white"
     >
       <div className="flex">
         <button
@@ -34,19 +34,21 @@ function HabitNavbar({}: Props) {
         >
           <BsArrowLeft />
         </button>
-        <h2 className="text-2xl ml-8">{currentHabit.name}</h2>
+        <h2 className="md:text-2xl text-xl mr-2 md:ml-8 ml-4">
+          {currentHabit.name}
+        </h2>
       </div>
       <div className="flex">
         <ThemeModeBtn />
 
         <button
-          className="text-2xl icon-btn"
+          className="md:text-2xl text-xl icon-btn"
           onClick={() => setIsEditingHabit(true)}
         >
           <MdEdit />
         </button>
         <button
-          className="text-2xl icon-btn ml-6"
+          className="md:text-2xl text-xl icon-btn md:ml-6 ml-4"
           onClick={() => setIsDeleteModalOpenedHabit(true)}
         >
           <BsFillTrashFill />

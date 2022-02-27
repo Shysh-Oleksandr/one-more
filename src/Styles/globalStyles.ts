@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
   .mark:hover {
     color: ${({ theme }) => theme.markColorHover};
   }
-  .main .habits__calendar .react-calendar {
+  .main .habits__calendar {
     background: ${({ theme }) => theme.calendarBg};
   }
   .main .react-calendar__tile, .react-calendar__navigation__label__labelText {

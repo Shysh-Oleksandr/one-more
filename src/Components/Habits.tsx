@@ -54,7 +54,7 @@ function Habits() {
 
   return (
     <>
-      <div className="habits__calendar shadow-md">
+      <div className="habits__calendar x-padding shadow-md">
         <Calendar
           defaultActiveStartDate={getMaxDate()}
           maxDate={getMaxDate()}

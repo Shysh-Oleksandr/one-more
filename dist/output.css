@@ -519,6 +519,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .flex {
   display: flex;
 }
@@ -569,6 +585,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .basis-2\/3 {
   flex-basis: 66.666667%;
+}
+
+.basis-\[90\%\] {
+  flex-basis: 90%;
 }
 
 .cursor-pointer {
@@ -636,6 +656,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.75rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -665,6 +689,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-6 {
   padding-bottom: 1.5rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
 }
 
 .text-left {
@@ -702,6 +734,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-\[1\.6rem\] {
+  font-size: 1.6rem;
 }
 
 .font-bold {
@@ -796,8 +837,36 @@ html {
 }
 
 .x-padding {
-  padding-left: 8rem;
-  padding-right: 8rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .x-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .x-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .x-padding {
+    padding-left: 7rem;
+    padding-right: 7rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .x-padding {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
 }
 
 .icon-btn {
@@ -856,6 +925,10 @@ html {
   transition: all 0.15s ease;
 }
 
+.main .theme-mode-btn .ball {
+  background: #4b5563;
+}
+
 .confirm-btn {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -874,6 +947,26 @@ html {
 .confirm-btn:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+  .theme-mode-btn {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .theme-mode-btn {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
 }
 
 .hover\:text-gray-400:hover {
@@ -896,4 +989,110 @@ html {
 
 .hover\:opacity-70:hover {
   opacity: 0.7;
+}
+
+@media (min-width: 640px) {
+  .sm\:basis-2\/3 {
+    flex-basis: 66.666667%;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:ml-8 {
+    margin-left: 2rem;
+  }
+
+  .md\:mr-8 {
+    margin-right: 2rem;
+  }
+
+  .md\:ml-6 {
+    margin-left: 1.5rem;
+  }
+
+  .md\:mt-5 {
+    margin-top: 1.25rem;
+  }
+
+  .md\:basis-1\/4 {
+    flex-basis: 25%;
+  }
+
+  .md\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+
+  .md\:basis-3\/5 {
+    flex-basis: 60%;
+  }
+
+  .md\:p-3 {
+    padding: 0.75rem;
+  }
+
+  .md\:pt-8 {
+    padding-top: 2rem;
+  }
+
+  .md\:pb-6 {
+    padding-bottom: 1.5rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .md\:text-\[1\.6rem\] {
+    font-size: 1.6rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:leading-10 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:basis-2\/5 {
+    flex-basis: 40%;
+  }
+
+  .lg\:basis-\[45\%\] {
+    flex-basis: 45%;
+  }
+
+  .lg\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .lg\:text-\[1\.7rem\] {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:basis-1\/3 {
+    flex-basis: 33.333333%;
+  }
 }
