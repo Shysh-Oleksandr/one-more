@@ -95,7 +95,7 @@ function AddHabit() {
   return (
     <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div className="add-habit" ref={ref}>
-        <h2 className="add-habit-label lg:text-[1.7rem] text-[1.6rem] leading-10 text-center py-2 rounded-t-lg text-white">
+        <h2 className="add-habit-label lg:text-[1.7rem] text-[1.6rem] leading-10 text-center py-2 rounded-t-xl text-white">
           {habitsState.isEditingHabit
             ? "Editing a habit"
             : "Adding a new habit"}
@@ -146,7 +146,7 @@ function AddHabit() {
               id="add-habit__color"
               type="color"
               defaultValue={
-                habitsState.isEditingHabit ? currentHabit.color : "#64b5f6"
+                habitsState.isEditingHabit ? currentHabit.color : "#2164a6"
               }
               className="add-habit__input"
               {...register("color")}
@@ -154,7 +154,7 @@ function AddHabit() {
           </div>
 
           <button
-            className="submit-btn w-5/6 md:text-2xl text-xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-md font-bold transition-opacity hover:opacity-80 mt-8 md:p-3 p-2"
+            className="submit-btn w-5/6 md:text-2xl text-xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-lg font-bold transition-opacity hover:opacity-80 mt-8 md:p-3 p-2"
             type="submit"
           >
             {habitsState.isEditingHabit ? "Edit" : "Add"}

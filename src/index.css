@@ -19,7 +19,7 @@ html {
 }
 
 :root {
-  --habit-color: #006edc;
+  --habit-color: #2164a6;
 }
 
 .x-padding {
@@ -55,5 +55,5 @@ html {
 }
 
 .confirm-btn {
-  @apply text-xl uppercase px-8 py-2 hover:bg-slate-200 transition-colors;
+  @apply text-xl uppercase px-8 py-2 rounded-md hover:bg-slate-200 transition-colors;
 }

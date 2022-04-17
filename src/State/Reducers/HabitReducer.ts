@@ -21,7 +21,7 @@ const initialState: IHabits = {
   isHabitOpened: false,
   isDeleteModalOpened: false,
   openedHabitId: null,
-  theme: "light",
+  theme: "dark",
 };
 
 const habitReducer = (

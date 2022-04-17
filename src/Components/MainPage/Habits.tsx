@@ -50,7 +50,19 @@ function Habits() {
         targetDiv.scrollLeft = sourceScrollDiv.scrollLeft;
       });
     });
-  }, []);
+
+    targetDivs.forEach((targetDiv) => {
+      targetDiv.scrollLeft = sourceScrollDiv!.scrollLeft;
+    });
+
+    return () => {
+      sourceScrollDiv?.removeEventListener("scroll", () => {
+        targetDivs.forEach((targetDiv) => {
+          targetDiv.scrollLeft = sourceScrollDiv.scrollLeft;
+        });
+      });
+    };
+  }, [habitsState.habits]);
 
   function handleOnDragEnd(result: any) {
     if (!result.destination) return;

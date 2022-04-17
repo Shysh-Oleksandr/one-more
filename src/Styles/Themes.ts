@@ -13,7 +13,7 @@ export const lightTheme = {
   addHabitBtnBg: "var(--habit-color)",
   questionBg: "#e2e8f0",
   confirmButtonBg: "#e2e8f0",
-  calendarStatTileBg: "none",
+  calendarStatTileBg: "#fbf8f8",
   calendarStatTileColor: "#212121",
   calendarStatTileBgHover: "#e6e6e6",
   calendarStatTileDisabledBtn: "#212121",
