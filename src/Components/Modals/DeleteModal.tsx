@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { actionCreactors, State } from "../../State";
 import { bindActionCreators } from "redux";
 import { useSelector } from "react-redux";
+import { closeModal } from "./../../Helpers/functions";
 
 function DeleteModal() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const dispatch = useDispatch();
-  const { setIsDeleteModalOpenedHabit, removingHabit } = bindActionCreators(
+  const { setIsDeleteModalOpened, removingHabit } = bindActionCreators(
     actionCreactors,
     dispatch
   );
@@ -18,23 +19,9 @@ function DeleteModal() {
   )!;
 
   useEffect(() => {
-    document.documentElement.classList.add("stop-scrolling");
-
-    const checkIfClickedOutside = (e: any) => {
-      if (
-        habitsState.isDeleteModalOpened &&
-        ref.current &&
-        !ref.current.contains(e.target)
-      ) {
-        setIsDeleteModalOpenedHabit(false);
-      }
-    };
-    document.addEventListener("mousedown", checkIfClickedOutside);
-    return () => {
-      // Cleanup the event listener
-      document.documentElement.classList.remove("stop-scrolling");
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
+    return closeModal(ref, habitsState.isDeleteModalOpened, () => {
+      setIsDeleteModalOpened(false);
+    });
   }, [habitsState.isDeleteModalOpened]);
 
   return (
@@ -51,7 +38,7 @@ function DeleteModal() {
         </p>
         <div className="confirm-btns flex justify-end md:mt-5 mt-3">
           <button
-            onClick={() => setIsDeleteModalOpenedHabit(false)}
+            onClick={() => setIsDeleteModalOpened(false)}
             className="confirm-btn"
           >
             No

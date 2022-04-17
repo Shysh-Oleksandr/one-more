@@ -6,10 +6,17 @@ import { getMaxDate } from "../../Helpers/functions";
 import { actionCreactors, State } from "../../State";
 import { getMinDate } from "./../../Helpers/functions";
 
+export enum HabitTypes {
+  YES_OR_NO = "Yes / No",
+  MEASURABLE = "Measurable",
+  SELECTABLE = "Selectable",
+}
+
 export interface IHabit {
   name: string;
   color: string;
   markedDays: number[];
+  habitType: HabitTypes;
   id: number;
   question?: string;
 }

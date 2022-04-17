@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { IHabit } from "../../Components/MainPage/Habit";
+import { HabitTypes, IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
 import { HabitId } from "../Reducers/HabitReducer";
@@ -40,19 +40,31 @@ export const markingHabit = (date: Date, id: number) => {
   };
 };
 
-export const setIsAddingHabit = (statement: boolean) => {
+export const setIsAddingHabit = (
+  statement: boolean,
+  habitType: HabitTypes = HabitTypes.YES_OR_NO
+) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SET_IS_ADDING,
+      payload: { isAdding: statement, habitType: habitType },
+    });
+  };
+};
+
+export const setIsDeleteModalOpened = (statement: boolean) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.SET_IS_DELETE_MODAL_OPENED,
       payload: statement,
     });
   };
 };
 
-export const setIsDeleteModalOpenedHabit = (statement: boolean) => {
+export const setIsHabitTypeModalOpened = (statement: boolean) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: ActionType.SET_IS_DELETE_MODAL_OPENED,
+      type: ActionType.SET_IS_HABIT_TYPE_MODAL_OPENED,
       payload: statement,
     });
   };

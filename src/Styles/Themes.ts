@@ -21,6 +21,7 @@ export const lightTheme = {
   chartFillBg: "#fafafa",
   scrollBarTrackBg: "#e2e8f0",
   scrollBarThumbBg: "#888",
+  habitTypeBg: "#53a1ef",
 };
 export const darkTheme = {
   body: "#212121",
@@ -45,6 +46,7 @@ export const darkTheme = {
   chartFillBg: "#303030",
   scrollBarTrackBg: "#212121",
   scrollBarThumbBg: "#303030",
+  habitTypeBg: "#224a72",
 };
 
 export type ThemeType = typeof lightTheme;

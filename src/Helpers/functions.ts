@@ -1,3 +1,5 @@
+import { HabitTypes, IHabit } from "../Components/MainPage/Habit";
+
 export const DAYS_TO_SHOW: number = 14;
 
 export function getDayName(dateStr: Date, locale: string) {
@@ -25,4 +27,44 @@ export function getDaysArray(s: Date, e: Date): Date[] {
     a.push(new Date(d));
   }
   return a;
+}
+
+export function getEmptyHabit(
+  habitName: string,
+  habitColor: string,
+  markedDays: number[] = [],
+  habitId: number,
+  habitQuestion: string,
+  habitType: HabitTypes
+): IHabit {
+  return {
+    name: habitName,
+    color: habitColor,
+    markedDays: markedDays,
+    id: habitId,
+    question: habitQuestion,
+    habitType: habitType,
+  };
+}
+
+export function closeModal(
+  ref: React.MutableRefObject<HTMLDivElement>,
+  statement: boolean,
+  onClose: () => void
+) {
+  document.documentElement.classList.add("stop-scrolling");
+
+  const checkIfClickedOutside = (e: any) => {
+    if (statement && ref.current && !ref.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
+  document.addEventListener("mousedown", checkIfClickedOutside);
+
+  return () => {
+    // Cleanup the event listenerj
+    document.documentElement.classList.remove("stop-scrolling");
+    document.removeEventListener("mousedown", checkIfClickedOutside);
+  };
 }

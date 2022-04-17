@@ -5,6 +5,8 @@ import { bindActionCreators } from "redux";
 import { actionCreactors, State } from "../../State";
 import { IHabit } from "../MainPage/Habit";
 import "../../Styles/addHabit.css";
+import { getEmptyHabit } from "../../Helpers/functions";
+import { closeModal } from "./../../Helpers/functions";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -18,7 +20,13 @@ function AddHabit() {
     ? habitsState.habits.find(
         (value) => value.id === habitsState.openedHabitId
       )!
-    : { name: "", color: "#475569", markedDays: [], id: 0 };
+    : {
+        name: "",
+        color: "#475569",
+        markedDays: [],
+        habitType: habitsState.currentAddingType,
+        id: 0,
+      };
 
   const {
     register,
@@ -28,28 +36,14 @@ function AddHabit() {
   } = useForm();
 
   useEffect(() => {
-    document.documentElement.classList.add("stop-scrolling");
-
-    const checkIfClickedOutside = (e: any) => {
-      // If the menu is open and the clicked target is not within the menu,
-      // then close the menu
-      if (
-        (habitsState.isAddingHabit || habitsState.isEditingHabit) &&
-        ref.current &&
-        !ref.current.contains(e.target)
-      ) {
+    return closeModal(
+      ref,
+      habitsState.isAddingHabit || habitsState.isEditingHabit,
+      () => {
         setIsAddingHabit(false);
         setIsEditingHabit(false);
       }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.documentElement.classList.remove("stop-scrolling");
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
+    );
   }, [habitsState.isAddingHabit, habitsState.isEditingHabit]);
 
   const onSubmit = () => {
@@ -73,20 +67,26 @@ function AddHabit() {
     }
 
     habitsState.isAddingHabit
-      ? addingHabit({
-          name: habitName,
-          color: habitColor,
-          markedDays: [],
-          id: habitsState.habits.length,
-          question: habitQuestion,
-        })
-      : editingHabit({
-          name: habitName,
-          color: habitColor,
-          markedDays: currentHabit.markedDays,
-          id: currentHabit.id,
-          question: habitQuestion,
-        });
+      ? addingHabit(
+          getEmptyHabit(
+            habitName,
+            habitColor,
+            [],
+            habitsState.habits.length,
+            habitQuestion,
+            habitsState.currentAddingType
+          )
+        )
+      : editingHabit(
+          getEmptyHabit(
+            habitName,
+            habitColor,
+            currentHabit.markedDays,
+            habitsState.habits.length,
+            habitQuestion,
+            habitsState.currentAddingType
+          )
+        );
 
     setIsAddingHabit(false);
     setIsEditingHabit(false);

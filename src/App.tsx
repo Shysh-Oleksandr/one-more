@@ -12,6 +12,7 @@ import { darkTheme, lightTheme } from "./Styles/Themes";
 import { bindActionCreators } from "redux";
 import Navbar from "./Components/MainPage/Navbar";
 import Habits from "./Components/MainPage/Habits";
+import HabitTypeModal from "./Components/Modals/HabitTypeModal";
 
 function App() {
   const habitsState = useSelector((state: State) => state.habits);
@@ -51,6 +52,7 @@ function App() {
         <div className="main">
           <Navbar />
           {habitsState.isAddingHabit && <AddHabit />}
+          {habitsState.isTypeModalOpened && <HabitTypeModal />}
           <Habits />
         </div>
       </>

@@ -1,4 +1,4 @@
-import { IHabit } from "../../Components/MainPage/Habit";
+import { HabitTypes, IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
 
@@ -8,9 +8,11 @@ export interface IHabits {
   habits: IHabit[];
   isAddingHabit: boolean;
   isEditingHabit: boolean;
+  isTypeModalOpened: boolean;
   isHabitOpened: boolean;
   isDeleteModalOpened: boolean;
   openedHabitId: HabitId;
+  currentAddingType: HabitTypes;
   theme: string;
 }
 
@@ -18,9 +20,11 @@ const initialState: IHabits = {
   habits: [],
   isAddingHabit: false,
   isEditingHabit: false,
+  isTypeModalOpened: false,
   isHabitOpened: false,
   isDeleteModalOpened: false,
   openedHabitId: null,
+  currentAddingType: HabitTypes.YES_OR_NO,
   theme: "dark",
 };
 
@@ -40,13 +44,20 @@ const habitReducer = (
       };
 
     case ActionType.SET_IS_ADDING:
-      return { ...state, isAddingHabit: action.payload };
+      return {
+        ...state,
+        isAddingHabit: action.payload.isAdding,
+        currentAddingType: action.payload.habitType,
+      };
 
     case ActionType.SET_IS_EDITING:
       return { ...state, isEditingHabit: action.payload };
 
     case ActionType.SET_IS_DELETE_MODAL_OPENED:
       return { ...state, isDeleteModalOpened: action.payload };
+
+    case ActionType.SET_IS_HABIT_TYPE_MODAL_OPENED:
+      return { ...state, isTypeModalOpened: action.payload };
 
     case ActionType.CHANGE_THEME:
       let newTheme = state.theme === "light" ? "dark" : "light";

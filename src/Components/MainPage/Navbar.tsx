@@ -8,7 +8,10 @@ import { actionCreactors } from "../../State";
 function Navbar() {
   const dispatch = useDispatch();
 
-  const { setIsAddingHabit } = bindActionCreators(actionCreactors, dispatch);
+  const { setIsHabitTypeModalOpened } = bindActionCreators(
+    actionCreactors,
+    dispatch
+  );
   return (
     <div className="flex navbar justify-between x-padding py-4 bg-gray-600 text-white">
       <h2 className="md:text-3xl sm:text-2xl text-xl font-bold">Habits</h2>
@@ -16,7 +19,7 @@ function Navbar() {
         <ThemeModeBtn />
         <button
           className="text-2xl hover:text-gray-300 transition-colors"
-          onClick={() => setIsAddingHabit(true)}
+          onClick={() => setIsHabitTypeModalOpened(true)}
         >
           <AiOutlinePlus />
         </button>

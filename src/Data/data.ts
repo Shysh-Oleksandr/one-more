@@ -1,3 +1,4 @@
+import { HabitTypes } from "../Components/MainPage/Habit";
 import { IHabits } from "../State/Reducers/HabitReducer";
 import { DAYS_TO_SHOW, getDaysArray } from "./../Helpers/functions";
 
@@ -34,3 +35,21 @@ export function getData(habitsState: IHabits): data {
 
   return data;
 }
+
+export const habitTypes = [
+  {
+    habitTypeName: HabitTypes.YES_OR_NO,
+    habitTypeDescription:
+      "E.g. Did you wake up early today? Did you workout? Did you eat healthy food?",
+  },
+  {
+    habitTypeName: HabitTypes.MEASURABLE,
+    habitTypeDescription:
+      "E.g. How many kilometers did you run? How long did you workout? How many vegetables did you eat?",
+  },
+  {
+    habitTypeName: HabitTypes.SELECTABLE,
+    habitTypeDescription:
+      "E.g. What kind of workout did you do? Which piece did you practice? Which language did you learn?",
+  },
+];

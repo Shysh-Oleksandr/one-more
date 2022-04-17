@@ -1,4 +1,4 @@
-import { IHabit } from "../../Components/MainPage/Habit";
+import { HabitTypes, IHabit } from "../../Components/MainPage/Habit";
 import { ActionType } from "../Action-types";
 import { HabitId } from "../Reducers/HabitReducer";
 
@@ -24,7 +24,7 @@ interface MarkingAction {
 
 interface SetIsAddingAction {
   type: ActionType.SET_IS_ADDING;
-  payload: boolean;
+  payload: { isAdding: boolean; habitType: HabitTypes };
 }
 
 interface SetIsEditingAction {
@@ -34,6 +34,11 @@ interface SetIsEditingAction {
 
 interface SetIsDeleteModalOpenedAction {
   type: ActionType.SET_IS_DELETE_MODAL_OPENED;
+  payload: boolean;
+}
+
+interface SetIsHabitTypeModalOpenedAction {
+  type: ActionType.SET_IS_HABIT_TYPE_MODAL_OPENED;
   payload: boolean;
 }
 
@@ -62,6 +67,7 @@ export type Action =
   | MarkingAction
   | ReorderAction
   | SetIsEditingAction
+  | SetIsHabitTypeModalOpenedAction
   | SetIsDeleteModalOpenedAction
   | SetIsHabitOpenedAction
   | ChangeThemeAction

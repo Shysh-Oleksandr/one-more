@@ -73,6 +73,10 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     background: ${({ theme }) => theme.themeModeBallBg};
   }
 
+  .habit-type:hover {
+    background: ${({ theme }) => theme.habitTypeBg};
+  }
+
   #chart_57723_1_ChartBorder {
     fill: ${({ theme }) => theme.chartFillBg};
   }
