@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreactors, State } from "../../State";
-import { IHabit } from "../MainPage/Habit";
+import { HabitTypes, IHabit } from "../MainPage/Habit";
 import "../../Styles/addHabit.css";
 import { getEmptyHabit } from "../../Helpers/functions";
 import { closeModal } from "./../../Helpers/functions";
+import InputBlock from "../UI/InputBlock";
+import InputError from "../UI/InputError";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -50,6 +52,7 @@ function AddHabit() {
     let habitName = getValues("name");
     let habitColor = getValues("color");
     let habitQuestion = getValues("question");
+    let habitUnit = getValues("unit");
 
     const isCurrentMonth =
       document
@@ -74,7 +77,8 @@ function AddHabit() {
             [],
             habitsState.habits.length,
             habitQuestion,
-            habitsState.currentAddingType
+            habitsState.currentAddingType,
+            habitUnit
           )
         )
       : editingHabit(
@@ -82,9 +86,10 @@ function AddHabit() {
             habitName,
             habitColor,
             currentHabit.markedDays,
-            habitsState.habits.length,
+            currentHabit.id,
             habitQuestion,
-            habitsState.currentAddingType
+            habitsState.currentAddingType,
+            habitUnit
           )
         );
 
@@ -101,57 +106,59 @@ function AddHabit() {
             : "Adding a new habit"}
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="add-habit__block">
-            <label className="add-habit__label" htmlFor="add-habit__name">
-              Name:
-            </label>
-            <input
-              id="add-habit__name"
-              placeholder="Work out"
-              type="text"
-              defaultValue={habitsState.isEditingHabit ? currentHabit.name : ""}
-              className="add-habit__input w-[65%]"
-              {...register("name", { required: true, maxLength: 20 })}
-            />
-          </div>
-          {errors.name?.type === "required" ? (
-            <span className="add-habit__error">Habit name is required.</span>
-          ) : (
-            errors.name?.type === "maxLength" && (
-              <span className="add-habit__error">
-                Habit name must be no longer than 20 characters
-              </span>
-            )
+          <InputBlock
+            placeholder="E.g. Work out"
+            labelName="Name:"
+            defaultValue={habitsState.isEditingHabit ? currentHabit.name : ""}
+            inputClassName="w-[65%]"
+            inputId="add-habit__name"
+            register={register}
+            registerName="name"
+            required={true}
+            maxLength={20}
+          />
+          <InputError errorType={errors.name?.type} labelName="Habit" />
+          <InputBlock
+            labelName="Question:"
+            placeholder="E.g. Did I work out today?"
+            defaultValue={
+              habitsState.isEditingHabit ? currentHabit.question! : ""
+            }
+            inputClassName="w-[65%]"
+            inputId="add-habit__question"
+            register={register}
+            registerName="question"
+            required={false}
+          />
+          {habitsState.currentAddingType === HabitTypes.MEASURABLE && (
+            <>
+              <InputBlock
+                labelName="Unit:"
+                placeholder="E.g. min"
+                defaultValue={
+                  habitsState.isEditingHabit ? currentHabit.unit! : ""
+                }
+                inputClassName="w-[65%]"
+                inputId="add-habit__unit"
+                register={register}
+                registerName="unit"
+                required={true}
+                maxLength={8}
+              />
+              <InputError errorType={errors.unit?.type} labelName="Unit" />
+            </>
           )}
-          <div className="add-habit__block">
-            <label className="add-habit__label" htmlFor="add-habit__name">
-              Question:
-            </label>
-            <input
-              id="add-habit__name"
-              placeholder="Did I work out today?"
-              type="text"
-              defaultValue={
-                habitsState.isEditingHabit ? currentHabit.question : ""
-              }
-              className="add-habit__input w-[65%]"
-              {...register("question")}
-            />
-          </div>
-          <div className="add-habit__block">
-            <label className="add-habit__label" htmlFor="add-habit__date">
-              Color:
-            </label>
-            <input
-              id="add-habit__color"
-              type="color"
-              defaultValue={
-                habitsState.isEditingHabit ? currentHabit.color : "#2164a6"
-              }
-              className="add-habit__input"
-              {...register("color")}
-            />
-          </div>
+          <InputBlock
+            labelName="Color:"
+            defaultValue={
+              habitsState.isEditingHabit ? currentHabit.color : "#2164a6"
+            }
+            inputId="add-habit__color"
+            register={register}
+            registerName="color"
+            required={false}
+            inputType="color"
+          />
 
           <button
             className="submit-btn w-5/6 md:text-2xl text-xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-lg font-bold transition-opacity hover:opacity-80 mt-8 md:p-3 p-2"

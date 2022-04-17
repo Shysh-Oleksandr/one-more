@@ -10,7 +10,7 @@ function HabitTypeModal() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const dispatch = useDispatch();
-  const { setIsHabitTypeModalOpened } = bindActionCreators(
+  const { setIsHabitTypeModalOpened, setIsAddingHabit } = bindActionCreators(
     actionCreactors,
     dispatch
   );
@@ -29,6 +29,10 @@ function HabitTypeModal() {
           return (
             <div
               key={habitType.habitTypeName}
+              onClick={() => {
+                setIsAddingHabit(true, habitType.habitTypeName);
+                setIsHabitTypeModalOpened(false);
+              }}
               className="habit-type md:px-8 px-6 md:pt-8 pt-2 text-left cursor-pointer add-habit w-[85%] !my-3 md:!pb-8 !pb-4 transition-colors"
             >
               <h3 className="font-bold md:mb-3 mb-1 md:text-3xl text-2xl">

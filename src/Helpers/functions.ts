@@ -35,7 +35,8 @@ export function getEmptyHabit(
   markedDays: number[] = [],
   habitId: number,
   habitQuestion: string,
-  habitType: HabitTypes
+  habitType: HabitTypes,
+  habitUnit: string | undefined = undefined
 ): IHabit {
   return {
     name: habitName,
@@ -44,6 +45,7 @@ export function getEmptyHabit(
     id: habitId,
     question: habitQuestion,
     habitType: habitType,
+    unit: habitUnit,
   };
 }
 

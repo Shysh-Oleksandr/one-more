@@ -83,6 +83,7 @@ const habitReducer = (
         }
         return habit;
       });
+
       return { ...state, habits: editedHabits };
 
     case ActionType.REMOVING:

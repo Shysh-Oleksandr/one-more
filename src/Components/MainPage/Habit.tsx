@@ -18,6 +18,7 @@ export interface IHabit {
   markedDays: number[];
   habitType: HabitTypes;
   id: number;
+  unit?: string;
   question?: string;
 }
 
