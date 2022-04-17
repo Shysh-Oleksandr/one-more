@@ -51,7 +51,11 @@ const habitReducer = (
       };
 
     case ActionType.SET_IS_EDITING:
-      return { ...state, isEditingHabit: action.payload };
+      return {
+        ...state,
+        isEditingHabit: action.payload.isEditing,
+        currentAddingType: action.payload.habitType,
+      };
 
     case ActionType.SET_IS_DELETE_MODAL_OPENED:
       return { ...state, isDeleteModalOpened: action.payload };

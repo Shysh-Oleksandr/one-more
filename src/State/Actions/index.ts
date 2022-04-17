@@ -29,7 +29,7 @@ interface SetIsAddingAction {
 
 interface SetIsEditingAction {
   type: ActionType.SET_IS_EDITING;
-  payload: boolean;
+  payload: { isEditing: boolean; habitType: HabitTypes };
 }
 
 interface SetIsDeleteModalOpenedAction {

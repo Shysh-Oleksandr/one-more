@@ -43,7 +43,9 @@ function HabitNavbar({}: Props) {
 
         <button
           className="md:text-2xl text-xl icon-btn"
-          onClick={() => setIsEditingHabit(true)}
+          onClick={() => {
+            setIsEditingHabit(true, currentHabit.habitType);
+          }}
         >
           <MdEdit />
         </button>

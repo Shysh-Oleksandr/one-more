@@ -70,11 +70,14 @@ export const setIsHabitTypeModalOpened = (statement: boolean) => {
   };
 };
 
-export const setIsEditingHabit = (statement: boolean) => {
+export const setIsEditingHabit = (
+  statement: boolean,
+  habitType: HabitTypes = HabitTypes.YES_OR_NO
+) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SET_IS_EDITING,
-      payload: statement,
+      payload: { isEditing: statement, habitType: habitType },
     });
   };
 };
