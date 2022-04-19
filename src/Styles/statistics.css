@@ -77,8 +77,23 @@
 .habit__stat .react-calendar__tile--marked {
   background: var(--habit-color) !important;
   color: #fff !important;
+  position: relative;
 }
 .habit__stat .react-calendar__tile--marked:enabled:hover {
   opacity: 0.8;
   background: var(--habit-color) !important;
+}
+
+.calendar-tile-checkbox[type="checkbox"] {
+  @apply invisible absolute;
+}
+
+.calendar-tile-checkbox:checked ~ label .calendar-tile-day,
+.calendar-tile-measurable-value {
+  @apply hidden;
+}
+
+.calendar-tile-checkbox:checked ~ label .calendar-tile-measurable-value,
+.calendar-tile-day {
+  @apply inline-block;
 }

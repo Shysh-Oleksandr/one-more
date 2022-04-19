@@ -25,7 +25,7 @@ function DeleteModal() {
   }, [habitsState.isDeleteModalOpened]);
 
   return (
-    <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
+    <div className="absolute z-40 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div
         className="add-habit md:px-8 px-6 md:pt-8 pt-6 md:pb-6 !pb-5 text-left"
         ref={ref}

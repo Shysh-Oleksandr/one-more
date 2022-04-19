@@ -10,6 +10,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { getData } from "../../../Data/data";
 import { State } from "../../../State";
+import { HabitTypes } from "../../MainPage/Habit";
 type Props = {};
 
 function HistoryStat({}: Props) {
@@ -31,7 +32,10 @@ function HistoryStat({}: Props) {
           valueType: "DateTime",
           edgeLabelPlacement: "Shift",
         }}
-        primaryYAxis={{ interval: 0 }}
+        primaryYAxis={{
+          interval:
+            currentHabit.habitType !== HabitTypes.MEASURABLE ? 0 : undefined,
+        }}
       >
         <Inject services={[ColumnSeries, DateTime]} />
         <SeriesCollectionDirective>
@@ -39,7 +43,6 @@ function HistoryStat({}: Props) {
             dataSource={getData(habitsState)}
             xName="date"
             yName="value"
-            // marker={{ visible: true }}
             type="Column"
           />
         </SeriesCollectionDirective>

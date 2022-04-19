@@ -32,12 +32,18 @@ export function getData(habitsState: IHabits): data {
 
   const data = dates.map((date) => {
     date.setHours(0, 0, 0, 0);
-    let isMarked: boolean = !!currentHabit.markedDays?.find(
-      (markedDay) => markedDay.date === date.getTime()
-    );
+    let measurableValue = 0;
+    let isMarked: boolean = !!currentHabit.markedDays?.find((markedDay) => {
+      measurableValue = markedDay.measurableValue;
+      return markedDay.date === date.getTime();
+    });
     return {
       date: date,
-      value: isMarked ? 1 : 0,
+      value: isMarked
+        ? currentHabit.habitType === HabitTypes.MEASURABLE
+          ? measurableValue
+          : 1
+        : 0,
     };
   });
 

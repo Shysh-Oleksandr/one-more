@@ -103,7 +103,7 @@ function AddHabit() {
   };
 
   return (
-    <div className="absolute z-100 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
+    <div className="absolute z-40 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
       <div className="add-habit" ref={ref}>
         <h2 className="add-habit-label lg:text-[1.7rem] text-[1.6rem] leading-10 text-center py-2 rounded-t-xl text-white">
           {habitsState.isEditingHabit
