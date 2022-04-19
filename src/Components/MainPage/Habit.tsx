@@ -12,10 +12,16 @@ export enum HabitTypes {
   SELECTABLE = "Selectable",
 }
 
+export interface IMarkedDay {
+  date: number;
+  measurableValue: number;
+  // Category
+}
+
 export interface IHabit {
   name: string;
   color: string;
-  markedDays: number[];
+  markedDays: IMarkedDay[];
   habitType: HabitTypes;
   id: number;
   unit?: string;
@@ -39,44 +45,70 @@ function Habit({ habit }: IProps) {
     const currentHabit: IHabit = habitsState.habits.find(
       (value) => value.id === habit.id
     )!;
-    let isMarked: boolean = currentHabit.markedDays?.includes(date.getTime())!;
-
-    return (
-      <span className="cursor-pointer">
-        {isMarked ? (
-          <svg
-            style={{ color: currentHabit.color }}
-            xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-7 w-7 hover:opacity-60  transition-opacity marked`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`mark h-7 w-7 text-gray-500 hover:text-gray-400 transition-colors 
-            `}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              className=" pointer-events-none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        )}
-      </span>
+    let isMarked: boolean = !!currentHabit.markedDays.find(
+      (markedDay) => markedDay.date === date.getTime()
     );
+
+    switch (currentHabit.habitType) {
+      case HabitTypes.YES_OR_NO:
+        return (
+          <span className="cursor-pointer">
+            {isMarked ? (
+              <svg
+                style={{ color: currentHabit.color }}
+                xmlns="http://www.w3.org/2000/svg"
+                className={`mark h-7 w-7 hover:opacity-60  transition-opacity marked`}
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`mark h-7 w-7 text-gray-500 hover:text-gray-400 transition-colors 
+            `}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  className=" pointer-events-none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            )}
+          </span>
+        );
+      case HabitTypes.MEASURABLE:
+        return (
+          <span>
+            <input
+              type="number"
+              className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
+              min={0}
+              step={0.1}
+              defaultValue={0}
+              id={`${currentHabit.id}-${date}`}
+            />
+            <label
+              className="text-center break-words text-sm !leading-[0.2rem]"
+              htmlFor={`${currentHabit.id}-${date}`}
+            >
+              {currentHabit.unit?.substring(0, 4)}
+            </label>
+          </span>
+        );
+      default:
+        return <span>0</span>;
+    }
   }
 
   function markDay(date: Date, event: any) {
@@ -87,14 +119,10 @@ function Habit({ habit }: IProps) {
     markingHabit(date, habitId);
   }
 
-  function openHabitStat() {
-    setIsHabitOpened(true, habit.id);
-  }
-
   return (
     <div className="flex justify-between items-center shadow-md x-padding">
       <h3
-        onClick={openHabitStat}
+        onClick={() => setIsHabitOpened(true, habit.id)}
         className="cursor-pointer basis-1/3 flex-grow md:text-base text-lg flex-shrink-0 md:leading-10 text-left transition-all hover:opacity-70"
         style={{ color: habit.color }}
       >

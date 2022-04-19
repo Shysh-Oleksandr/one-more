@@ -106,13 +106,17 @@ const habitReducer = (
       let date = action.payload.date.getTime();
       const newHabits: IHabit[] = state.habits.map((habit) => {
         if (habit.id == action.payload.id) {
-          let isMarked: boolean = state.habits
-            .find((value) => value.id === habit.id)!
-            .markedDays?.includes(date)!;
+          let measurableValue = 0;
+          let isMarked: boolean = !!habit.markedDays?.find((markedDay) => {
+            measurableValue = markedDay.measurableValue;
+            return markedDay.date === date;
+          });
 
           // Removing the date from array.
           if (isMarked) {
-            let newMarkedDays = habit.markedDays?.filter((day) => day !== date);
+            let newMarkedDays = habit.markedDays?.filter(
+              (day) => day.date !== date
+            );
             return {
               ...habit,
               markedDays: newMarkedDays,
@@ -121,7 +125,10 @@ const habitReducer = (
           // Adding the date to array.
           return {
             ...habit,
-            markedDays: [...habit.markedDays!, date],
+            markedDays: [
+              ...habit.markedDays!,
+              { date: date, measurableValue: measurableValue },
+            ],
           };
         }
         return habit;

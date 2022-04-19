@@ -1,4 +1,4 @@
-import { HabitTypes, IHabit } from "../Components/MainPage/Habit";
+import { HabitTypes, IHabit, IMarkedDay } from "../Components/MainPage/Habit";
 
 export const DAYS_TO_SHOW: number = 14;
 
@@ -32,7 +32,7 @@ export function getDaysArray(s: Date, e: Date): Date[] {
 export function getEmptyHabit(
   habitName: string,
   habitColor: string,
-  markedDays: number[] = [],
+  markedDays: IMarkedDay[] = [],
   habitId: number,
   habitQuestion: string,
   habitType: HabitTypes,

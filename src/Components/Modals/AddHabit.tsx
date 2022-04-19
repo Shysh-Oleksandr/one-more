@@ -34,6 +34,7 @@ function AddHabit() {
     register,
     handleSubmit,
     getValues,
+    setFocus,
     formState: { errors },
   } = useForm();
 
@@ -47,6 +48,10 @@ function AddHabit() {
       }
     );
   }, [habitsState.isAddingHabit, habitsState.isEditingHabit]);
+
+  useEffect(() => {
+    setFocus("name");
+  }, []);
 
   const onSubmit = () => {
     let habitName = getValues("name");
@@ -117,7 +122,11 @@ function AddHabit() {
             required={true}
             maxLength={20}
           />
-          <InputError errorType={errors.name?.type} labelName="Habit" />
+          <InputError
+            errorType={errors.name?.type}
+            labelName="Habit"
+            maxLength={20}
+          />
           <InputBlock
             labelName="Question:"
             placeholder="E.g. Did I work out today?"
@@ -145,7 +154,11 @@ function AddHabit() {
                 required={true}
                 maxLength={8}
               />
-              <InputError errorType={errors.unit?.type} labelName="Unit" />
+              <InputError
+                errorType={errors.unit?.type}
+                maxLength={8}
+                labelName="Unit"
+              />
             </>
           )}
           <InputBlock

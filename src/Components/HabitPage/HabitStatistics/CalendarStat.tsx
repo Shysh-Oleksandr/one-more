@@ -17,7 +17,9 @@ function CalendarStat() {
   )!;
 
   function highlightDay(date: Date): string {
-    let isMarked: boolean = currentHabit.markedDays?.includes(date.getTime())!;
+    let isMarked: boolean = !!currentHabit.markedDays?.find(
+      (markedDay) => markedDay.date === date.getTime()
+    );
 
     return isMarked ? "react-calendar__tile--marked" : "";
   }

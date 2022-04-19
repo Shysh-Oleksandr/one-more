@@ -13,7 +13,15 @@ export function getData(habitsState: IHabits): data {
   )!;
 
   const currentDate = new Date();
-  var minDate = new Date(currentHabit.markedDays.sort()[0]);
+  console.log(currentHabit);
+
+  if (currentHabit.markedDays.length === 0) return [];
+
+  var minDate = new Date(
+    currentHabit.markedDays.sort((a, b) => {
+      return a.date > b.date ? 1 : -1;
+    })[0].date
+  );
   var checkedMinDate = new Date(currentDate.getTime());
   checkedMinDate.setDate(currentDate.getDate() - DAYS_TO_SHOW + 1);
 
@@ -25,8 +33,9 @@ export function getData(habitsState: IHabits): data {
 
   const data = dates.map((date) => {
     date.setHours(0, 0, 0, 0);
-    let dateSeconds = date.getTime();
-    let isMarked: boolean = currentHabit.markedDays?.includes(dateSeconds)!;
+    let isMarked: boolean = !!currentHabit.markedDays?.find(
+      (markedDay) => markedDay.date === date.getTime()
+    );
     return {
       date: date,
       value: isMarked ? 1 : 0,

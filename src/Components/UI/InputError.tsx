@@ -3,9 +3,10 @@ import React from "react";
 type Props = {
   labelName: string;
   errorType: any;
+  maxLength?: number;
 };
 
-const InputError = ({ labelName, errorType }: Props) => {
+const InputError = ({ labelName, errorType, maxLength }: Props) => {
   return (
     <div>
       {errorType === "required" ? (
@@ -13,7 +14,7 @@ const InputError = ({ labelName, errorType }: Props) => {
       ) : (
         errorType === "maxLength" && (
           <span className="add-habit__error">
-            {labelName} name cannot be longer than 20 characters.
+            {labelName} name cannot be longer than {maxLength} characters.
           </span>
         )
       )}
