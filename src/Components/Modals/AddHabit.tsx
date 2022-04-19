@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { actionCreactors, State } from "../../State";
 import { HabitTypes, IHabit } from "../MainPage/Habit";
 import "../../Styles/addHabit.css";
-import { getEmptyHabit } from "../../Helpers/functions";
+import { getEmptyHabit, getRandomNumber } from "../../Helpers/functions";
 import { closeModal } from "./../../Helpers/functions";
 import InputBlock from "../UI/InputBlock";
 import InputError from "../UI/InputError";
@@ -80,7 +80,7 @@ function AddHabit() {
             habitName,
             habitColor,
             [],
-            habitsState.habits.length,
+            getRandomNumber(),
             habitQuestion,
             habitsState.currentAddingType,
             habitUnit

@@ -70,3 +70,7 @@ export function closeModal(
     document.removeEventListener("mousedown", checkIfClickedOutside);
   };
 }
+
+export function getRandomNumber(n: number = 10000000000) {
+  return Math.floor(Math.random() * n) + 1;
+}

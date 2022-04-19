@@ -31,11 +31,15 @@ export const editingHabit = (habitToEdit: IHabit) => {
   };
 };
 
-export const markingHabit = (date: Date, id: number) => {
+export const markingHabit = (
+  date: Date,
+  id: number,
+  measurableValue: number = 0
+) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.MARKING,
-      payload: { date, id },
+      payload: { date, id, measurableValue },
     });
   };
 };

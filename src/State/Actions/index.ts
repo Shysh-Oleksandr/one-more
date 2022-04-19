@@ -19,7 +19,7 @@ interface RemovingAction {
 
 interface MarkingAction {
   type: ActionType.MARKING;
-  payload: { date: Date; id: number };
+  payload: { date: Date; id: number; measurableValue: number };
 }
 
 interface SetIsAddingAction {

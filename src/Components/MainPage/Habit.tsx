@@ -92,6 +92,7 @@ function Habit({ habit }: IProps) {
           (markedDay) =>
             markedDay.date === date.getTime() && markedDay.measurableValue > 0
         );
+
         return (
           <span>
             <input
@@ -100,7 +101,13 @@ function Habit({ habit }: IProps) {
               className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
               min={0}
               step={0.1}
-              defaultValue={0}
+              onFocus={(e) => e.target.select()}
+              onChange={(e) => changeMeasurableValue(e, date, currentHabit.id)}
+              defaultValue={
+                currentHabit.markedDays.find(
+                  (day) => day.date === date.getTime()
+                )?.measurableValue || 0
+              }
               id={`${currentHabit.id}-${date}`}
             />
             <label
@@ -115,6 +122,16 @@ function Habit({ habit }: IProps) {
       default:
         return <span>0</span>;
     }
+  }
+
+  function changeMeasurableValue(
+    e: React.ChangeEvent<HTMLInputElement>,
+    date: Date,
+    habitId: number
+  ) {
+    e.target.value = parseFloat(e.target.value).toString();
+    if (e.target.value === "") e.target.value = "0";
+    markingHabit(date, habitId, parseFloat(e.target.value));
   }
 
   function markDay(date: Date, event: any) {
