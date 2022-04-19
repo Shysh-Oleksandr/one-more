@@ -88,10 +88,15 @@ function Habit({ habit }: IProps) {
           </span>
         );
       case HabitTypes.MEASURABLE:
+        isMarked = !!currentHabit.markedDays.find(
+          (markedDay) =>
+            markedDay.date === date.getTime() && markedDay.measurableValue > 0
+        );
         return (
           <span>
             <input
               type="number"
+              style={{ color: isMarked ? currentHabit.color : "unset" }}
               className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
               min={0}
               step={0.1}
@@ -99,6 +104,7 @@ function Habit({ habit }: IProps) {
               id={`${currentHabit.id}-${date}`}
             />
             <label
+              style={{ color: isMarked ? currentHabit.color : "unset" }}
               className="text-center break-words text-sm !leading-[0.2rem]"
               htmlFor={`${currentHabit.id}-${date}`}
             >

@@ -13,7 +13,6 @@ export function getData(habitsState: IHabits): data {
   )!;
 
   const currentDate = new Date();
-  console.log(currentHabit);
 
   if (currentHabit.markedDays.length === 0) return [];
 
