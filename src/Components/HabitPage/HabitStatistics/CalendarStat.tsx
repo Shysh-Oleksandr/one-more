@@ -49,7 +49,10 @@ function CalendarStat() {
           className="calendar-tile-checkbox"
           id={`${date.getTime()}-calendar-tile`}
         />
-        <label htmlFor={`${date.getTime()}-calendar-tile`} className="py-10">
+        <label
+          htmlFor={`${date.getTime()}-calendar-tile`}
+          className="py-10 cursor-pointer"
+        >
           <span className="calendar-tile-day w-full h-full cursor-pointer">
             {date.getDate()}
             {!!currentMarkedDay && (

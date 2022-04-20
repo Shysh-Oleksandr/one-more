@@ -54,16 +54,16 @@ export const habitTypes = [
   {
     habitTypeName: HabitTypes.YES_OR_NO,
     habitTypeDescription:
-      "E.g. Did you wake up early today? Did you workout? Did you eat healthy food?",
+      "E.g. Did I wake up early today? Did I workout? Did I eat healthy food?",
   },
   {
     habitTypeName: HabitTypes.MEASURABLE,
     habitTypeDescription:
-      "E.g. How many kilometers did you run? How long did you workout? How many vegetables did you eat?",
+      "E.g. How many kilometers did I run? How long did I workout? How many vegetables did I eat?",
   },
   {
     habitTypeName: HabitTypes.SELECTABLE,
     habitTypeDescription:
-      "E.g. What kind of workout did you do? Which piece did you practice? Which language did you learn?",
+      "E.g. What kind of workout did I do? Which piece did I practice? Which language did I learn?",
   },
 ];

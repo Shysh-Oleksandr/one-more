@@ -24,7 +24,10 @@ function HabitTypeModal() {
 
   return (
     <div className="absolute z-20 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
-      <div ref={ref} className="flex flex-col justify-center items-center">
+      <div
+        ref={ref}
+        className="flex flex-col justify-center items-center overflow-y-auto max-h-[95vh]"
+      >
         {habitTypes.map((habitType) => {
           return (
             <div

@@ -112,7 +112,7 @@ function AddHabit() {
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputBlock
-            placeholder="E.g. Work out"
+            placeholder="E.g. Workout"
             labelName="Name:"
             defaultValue={habitsState.isEditingHabit ? currentHabit.name : ""}
             inputClassName="w-[65%]"
@@ -129,7 +129,13 @@ function AddHabit() {
           />
           <InputBlock
             labelName="Question:"
-            placeholder="E.g. Did I work out today?"
+            placeholder={
+              currentHabit.habitType === HabitTypes.YES_OR_NO
+                ? "E.g. Did I work out today?"
+                : currentHabit.habitType === HabitTypes.MEASURABLE
+                ? "E.g. How long did I work out?"
+                : "E.g. What kind of workout did I do?"
+            }
             defaultValue={
               habitsState.isEditingHabit ? currentHabit.question! : ""
             }
