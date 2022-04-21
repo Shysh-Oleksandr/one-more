@@ -127,8 +127,6 @@ const habitReducer = (
           if (habit.habitType === HabitTypes.MEASURABLE) {
             // If measurable value is 0, remove the date from array.
             if (action.payload.measurableValue === 0) {
-              console.log("remove");
-
               let newMarkedDays = habit.markedDays?.filter(
                 (day) => day.date !== date
               );
@@ -139,8 +137,6 @@ const habitReducer = (
             }
             // Else if date is in the array, change the measurable value.
             else if (currentMarkedDay) {
-              console.log("change");
-
               let newMarkedDays = habit.markedDays.map((markedDay) => {
                 if (markedDay.date === date) {
                   return {
@@ -157,13 +153,14 @@ const habitReducer = (
             }
           }
           // Adding the date to array.
-          console.log("add");
-
           return {
             ...habit,
             markedDays: [
               ...habit.markedDays!,
-              { date: date, measurableValue: action.payload.measurableValue },
+              {
+                date: date,
+                measurableValue: action.payload.measurableValue,
+              }, // !
             ],
           };
         }

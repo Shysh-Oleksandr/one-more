@@ -34,7 +34,7 @@ export function getData(habitsState: IHabits): data {
     date.setHours(0, 0, 0, 0);
     let measurableValue = 0;
     let isMarked: boolean = !!currentHabit.markedDays?.find((markedDay) => {
-      measurableValue = markedDay.measurableValue;
+      measurableValue = markedDay.measurableValue!;
       return markedDay.date === date.getTime();
     });
     return {

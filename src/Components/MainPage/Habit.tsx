@@ -14,8 +14,9 @@ export enum HabitTypes {
 
 export interface IMarkedDay {
   date: number;
-  measurableValue: number;
-  // Category
+  measurableValue?: number;
+  selectableOption?: string;
+  showOptions?: boolean;
 }
 
 export interface IHabit {
@@ -91,7 +92,7 @@ function Habit({ habit }: IProps) {
       case HabitTypes.MEASURABLE:
         isMarked = !!currentHabit.markedDays.find(
           (markedDay) =>
-            markedDay.date === date.getTime() && markedDay.measurableValue > 0
+            markedDay.date === date.getTime() && markedDay.measurableValue! > 0
         );
 
         return (
@@ -120,8 +121,23 @@ function Habit({ habit }: IProps) {
             </label>
           </span>
         );
-      default:
-        return <span>0</span>;
+
+      case HabitTypes.SELECTABLE:
+        isMarked = !!currentHabit.markedDays.find(
+          (markedDay) =>
+            markedDay.date === date.getTime() &&
+            markedDay.selectableOption !== "None"
+        );
+
+        return (
+          <span className="text-xs">
+            {isMarked
+              ? currentHabit.markedDays.find(
+                  (day) => day.date === date.getTime()
+                )?.selectableOption
+              : "None"}
+          </span>
+        );
     }
   }
 
