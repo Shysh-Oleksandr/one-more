@@ -36,7 +36,8 @@ export function getEmptyHabit(
   habitId: number,
   habitQuestion: string,
   habitType: HabitTypes,
-  habitUnit: string | undefined = undefined
+  habitUnit: string | undefined = undefined,
+  habitOptions: string[] = []
 ): IHabit {
   return {
     name: habitName,
@@ -46,6 +47,7 @@ export function getEmptyHabit(
     question: habitQuestion,
     habitType: habitType,
     unit: habitUnit,
+    options: habitOptions,
   };
 }
 

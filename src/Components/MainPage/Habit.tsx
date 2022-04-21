@@ -25,6 +25,7 @@ export interface IHabit {
   habitType: HabitTypes;
   id: number;
   unit?: string;
+  options?: string[];
   question?: string;
 }
 

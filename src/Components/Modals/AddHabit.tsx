@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -9,6 +9,8 @@ import { getEmptyHabit, getRandomNumber } from "../../Helpers/functions";
 import { closeModal } from "./../../Helpers/functions";
 import InputBlock from "../UI/InputBlock";
 import InputError from "../UI/InputError";
+import { AiOutlinePlus } from "react-icons/ai";
+import { JsxElement } from "typescript";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -38,6 +40,35 @@ function AddHabit() {
     formState: { errors },
   } = useForm();
 
+  const [habitOptions, setHabitOptions] = useState<string[]>([
+    habitsState.isEditingHabit ? currentHabit.options![0] : "",
+    habitsState.isEditingHabit ? currentHabit.options![1] : "",
+    // <InputBlock
+    //   key={`add-habit__option-${getRandomNumber()}`}
+    //   labelName="Option 1:"
+    //   placeholder="E.g. Calisthenics"
+    //   defaultValue={habitsState.isEditingHabit ? currentHabit.options![0] : ""}
+    //   inputClassName="w-[65%]"
+    //   inputId="add-habit__option-1"
+    //   register={register}
+    //   registerName="option1"
+    //   required={true}
+    //   maxLength={20}
+    // />,
+    // <InputBlock
+    //   key={`add-habit__option-${getRandomNumber()}`}
+    //   labelName="Option 2:"
+    //   placeholder="E.g. Running"
+    //   defaultValue={habitsState.isEditingHabit ? currentHabit.options![1] : ""}
+    //   inputClassName="w-[65%]"
+    //   inputId="add-habit__option-2"
+    //   register={register}
+    //   registerName="option2"
+    //   required={false}
+    //   maxLength={20}
+    // />,
+  ]);
+
   useEffect(() => {
     return closeModal(
       ref,
@@ -51,14 +82,13 @@ function AddHabit() {
 
   useEffect(() => {
     setFocus("name");
+
+    if (currentHabit.options) {
+      setHabitOptions(currentHabit.options);
+    }
   }, []);
 
-  const onSubmit = () => {
-    let habitName = getValues("name");
-    let habitColor = getValues("color");
-    let habitQuestion = getValues("question");
-    let habitUnit = getValues("unit");
-
+  function chooseRightMonth() {
     const isCurrentMonth =
       document
         .querySelector(
@@ -73,6 +103,18 @@ function AddHabit() {
       );
       nextBtn!.click();
     }
+  }
+
+  const onSubmit = () => {
+    const habitName: string = getValues("name");
+    const habitColor: string = getValues("color");
+    const habitQuestion: string = getValues("question");
+    const habitUnit: string = getValues("unit");
+    const habitOptionsName: string[] = habitOptions
+      .map((option, index) => getValues(`option${index + 1}`))
+      .filter((option) => option !== "");
+
+    chooseRightMonth();
 
     habitsState.isAddingHabit
       ? addingHabit(
@@ -83,7 +125,8 @@ function AddHabit() {
             getRandomNumber(),
             habitQuestion,
             habitsState.currentAddingType,
-            habitUnit
+            habitUnit,
+            habitOptionsName
           )
         )
       : editingHabit(
@@ -94,13 +137,52 @@ function AddHabit() {
             currentHabit.id,
             habitQuestion,
             habitsState.currentAddingType,
-            habitUnit
+            habitUnit,
+            habitOptionsName
           )
         );
 
     setIsAddingHabit(false);
     setIsEditingHabit(false);
   };
+
+  const addNewOption = () => {
+    setHabitOptions((prevHabitOptions) => {
+      return [...prevHabitOptions, ""];
+    });
+  };
+
+  function showHabitOptions(
+    habitOptions: string[],
+    errors: { [x: string]: any }
+  ) {
+    return habitOptions.map((habitOption, index) => {
+      return (
+        <div key={`add-habit__option-${getRandomNumber()}`}>
+          <InputBlock
+            labelName={`Option ${index + 1}:`}
+            placeholder="E.g. Running"
+            defaultValue={
+              habitsState.isEditingHabit ? currentHabit.options![index] : ""
+            }
+            inputClassName="w-[65%]"
+            inputId={`add-habit__option-${index + 1}`}
+            register={register}
+            registerName={`option${index + 1}`}
+            required={index === 0}
+            maxLength={20}
+          />
+          {index === 0 && (
+            <InputError
+              errorType={errors.option1?.type}
+              maxLength={20}
+              labelName="Option"
+            />
+          )}
+        </div>
+      );
+    });
+  }
 
   return (
     <div className="absolute z-40 h-full w-full top-0 bg-opacity-60 bg-black flex justify-center items-center">
@@ -178,6 +260,22 @@ function AddHabit() {
             required={false}
             inputType="color"
           />
+          {habitsState.currentAddingType === HabitTypes.SELECTABLE && (
+            <div>
+              {showHabitOptions(habitOptions, errors)}
+              {habitOptions.length < 5 && (
+                <div className="flex justify-center">
+                  <button
+                    type="button"
+                    onClick={addNewOption}
+                    className="inline-block mt-1 cursor-pointer text-2xl p-2 bg-[#101010] transition-colors hover:bg-[#222121] rounded-full"
+                  >
+                    <AiOutlinePlus />
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           <button
             className="submit-btn w-5/6 md:text-2xl text-xl flex justify-center mx-auto text-white shadow-lg leading-6 rounded-lg font-bold transition-opacity hover:opacity-80 mt-8 md:p-3 p-2"
