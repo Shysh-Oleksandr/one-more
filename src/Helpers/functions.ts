@@ -76,3 +76,13 @@ export function closeModal(
 export function getRandomNumber(n: number = 10000000000) {
   return Math.floor(Math.random() * n) + 1;
 }
+
+export function countInArray(array: any[], el: any): number {
+  var count = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === el) {
+      count++;
+    }
+  }
+  return count;
+}

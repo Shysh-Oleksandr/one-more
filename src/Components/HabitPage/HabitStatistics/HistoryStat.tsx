@@ -1,4 +1,5 @@
 import {
+  Category,
   ChartComponent,
   ColumnSeries,
   DateTime,
@@ -19,6 +20,7 @@ function HistoryStat({}: Props) {
     (value) => value.id === habitsState.openedHabitId
   )!;
 
+  const isSelectableType = currentHabit.habitType === HabitTypes.SELECTABLE;
   return (
     <div className="history-stat stat pb-12 shadow-lg x-padding">
       <h2 style={{ color: currentHabit.color }} className="stat-label">
@@ -29,19 +31,25 @@ function HistoryStat({}: Props) {
         palettes={[currentHabit.color]}
         width="100%"
         primaryXAxis={{
-          valueType: "DateTime",
-          edgeLabelPlacement: "Shift",
+          valueType: isSelectableType ? "Category" : "DateTime",
+          title: isSelectableType ? "Options" : undefined,
         }}
         primaryYAxis={{
           interval:
-            currentHabit.habitType !== HabitTypes.MEASURABLE ? 0 : undefined,
+            currentHabit.habitType === HabitTypes.YES_OR_NO ? 0 : undefined,
         }}
       >
-        <Inject services={[ColumnSeries, DateTime]} />
+        <Inject
+          services={
+            isSelectableType
+              ? [ColumnSeries, Category]
+              : [ColumnSeries, DateTime]
+          }
+        />
         <SeriesCollectionDirective>
           <SeriesDirective
             dataSource={getData(habitsState)}
-            xName="date"
+            xName={isSelectableType ? "category" : "date"}
             yName="value"
             type="Column"
           />
