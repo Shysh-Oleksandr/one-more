@@ -34,12 +34,13 @@ export const editingHabit = (habitToEdit: IHabit) => {
 export const markingHabit = (
   date: Date,
   id: number,
-  measurableValue: number = 0
+  measurableValue: number = 0,
+  selectedOption: string = "None"
 ) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.MARKING,
-      payload: { date, id, measurableValue },
+      payload: { date, id, measurableValue, selectedOption },
     });
   };
 };

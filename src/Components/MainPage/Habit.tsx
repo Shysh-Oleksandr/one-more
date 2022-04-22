@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getMaxDate } from "../../Helpers/functions";
+import { getMaxDate, getRandomNumber } from "../../Helpers/functions";
 import { actionCreactors, State } from "../../State";
 import { getMinDate } from "./../../Helpers/functions";
 
@@ -130,13 +130,32 @@ function Habit({ habit }: IProps) {
         );
 
         return (
-          <span className="text-xs">
-            {isMarked
-              ? currentHabit.markedDays.find(
-                  (day) => day.date === date.getTime()
-                )?.selectableOption
-              : "None"}
-          </span>
+          <select
+            onChange={(e) =>
+              markingHabit(date, currentHabit.id, 0, e.target.value)
+            }
+            defaultValue={
+              currentHabit.markedDays.find(
+                (markedDay) => markedDay.date === date.getTime()
+              )?.selectableOption || "None"
+            }
+            className="text-xs cursor-pointer hover:text-[#aeadad] bg-slate-900 transition-colors"
+          >
+            <option value="" className="py-1 bg-slate-800 text-lg">
+              None
+            </option>
+            {currentHabit.options?.map((option) => {
+              return (
+                <option
+                  className="py-1 bg-slate-800 text-lg"
+                  key={`option-${option}-${currentHabit.id}`}
+                  value={option}
+                >
+                  {option}
+                </option>
+              );
+            })}
+          </select>
         );
     }
   }

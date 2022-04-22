@@ -105,12 +105,15 @@ const habitReducer = (
     case ActionType.MARKING:
       let date = action.payload.date.getTime();
       const newHabits: IHabit[] = state.habits.map((habit) => {
+        const isYesOrNoType = habit.habitType === HabitTypes.YES_OR_NO;
+        const isMeasurableType = habit.habitType === HabitTypes.MEASURABLE;
+        const isSelectableType = habit.habitType === HabitTypes.SELECTABLE;
         if (habit.id == action.payload.id) {
           const currentMarkedDay = habit.markedDays.find(
             (markedDay) => markedDay.date === date
           );
 
-          if (habit.habitType === HabitTypes.YES_OR_NO) {
+          if (isYesOrNoType) {
             let isMarked: boolean = !!currentMarkedDay;
 
             // Removing the date from array.
@@ -124,9 +127,12 @@ const habitReducer = (
               };
             }
           }
-          if (habit.habitType === HabitTypes.MEASURABLE) {
+          if (isMeasurableType || isSelectableType) {
             // If measurable value is 0, remove the date from array.
-            if (action.payload.measurableValue === 0) {
+            if (
+              (action.payload.measurableValue === 0 && isMeasurableType) ||
+              (action.payload.selectedOption === "None" && isSelectableType)
+            ) {
               let newMarkedDays = habit.markedDays?.filter(
                 (day) => day.date !== date
               );
@@ -142,6 +148,7 @@ const habitReducer = (
                   return {
                     date: date,
                     measurableValue: action.payload.measurableValue,
+                    selectableOption: action.payload.selectedOption,
                   };
                 }
                 return markedDay;
@@ -160,7 +167,8 @@ const habitReducer = (
               {
                 date: date,
                 measurableValue: action.payload.measurableValue,
-              }, // !
+                selectableOption: action.payload.selectedOption,
+              },
             ],
           };
         }
