@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreactors, State } from "../../State";
-import { HabitTypes, IHabit } from "../MainPage/Habit";
-import "../../Styles/addHabit.css";
 import { getEmptyHabit, getRandomNumber } from "../../Helpers/functions";
-import { closeModal } from "./../../Helpers/functions";
+import { actionCreactors, State } from "../../State";
+import "../../Styles/addHabit.css";
+import { HabitTypes, IHabit } from "../MainPage/Habit";
 import InputBlock from "../UI/InputBlock";
 import InputError from "../UI/InputError";
-import { AiOutlinePlus } from "react-icons/ai";
-import { JsxElement } from "typescript";
+import { closeModal } from "./../../Helpers/functions";
 
 function AddHabit() {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -252,7 +251,7 @@ function AddHabit() {
                   <button
                     type="button"
                     onClick={addNewOption}
-                    className="inline-block mt-1 cursor-pointer text-2xl p-2 bg-[#101010] transition-colors hover:bg-[#222121] rounded-full"
+                    className="add-option-btn inline-block mt-1 cursor-pointer text-2xl p-2 bg-[#101010] transition-opacity text-white hover:opacity-90 rounded-full"
                   >
                     <AiOutlinePlus />
                   </button>

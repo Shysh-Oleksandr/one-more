@@ -1,4 +1,5 @@
 import { HabitTypes, IHabit } from "../../Components/MainPage/Habit";
+import { initialHabits } from "../../Data/data";
 import { ActionType } from "../Action-types";
 import { Action } from "../Actions";
 
@@ -17,7 +18,7 @@ export interface IHabits {
 }
 
 const initialState: IHabits = {
-  habits: [],
+  habits: initialHabits,
   isAddingHabit: false,
   isEditingHabit: false,
   isTypeModalOpened: false,

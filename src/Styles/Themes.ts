@@ -24,6 +24,7 @@ export const lightTheme = {
   habitTypeBg: "#53a1ef",
   inputCellColorBg: "rgb(237, 237, 238)",
   inputCellColor: "rgb(39,39,42)",
+  addOptionBtnBg: "rgb(33, 100, 166)",
 };
 export const darkTheme = {
   body: "#212121",
@@ -51,6 +52,7 @@ export const darkTheme = {
   habitTypeBg: "#224a72",
   inputCellColorBg: "rgb(39,39,42)",
   inputCellColor: "#fff",
+  addOptionBtnBg: "rgb(16,16,16)",
 };
 
 export type ThemeType = typeof lightTheme;

@@ -77,10 +77,14 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     background: ${({ theme }) => theme.habitTypeBg};
   }
 
+  .add-option-btn {
+    background: ${({ theme }) => theme.addOptionBtnBg};
+  }
   .habit-value {
     background: ${({ theme }) => theme.inputCellColorBg};
     color: ${({ theme }) => theme.inputCellColor};
   }
+  
 
   #chart_57723_1_ChartBorder {
     fill: ${({ theme }) => theme.chartFillBg};

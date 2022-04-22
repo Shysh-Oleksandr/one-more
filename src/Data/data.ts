@@ -1,9 +1,10 @@
-import { HabitTypes } from "../Components/MainPage/Habit";
+import { HabitTypes, IHabit } from "../Components/MainPage/Habit";
 import { IHabits } from "../State/Reducers/HabitReducer";
 import {
   countInArray,
   DAYS_TO_SHOW,
   getDaysArray,
+  getRandomNumber,
 } from "./../Helpers/functions";
 
 type data =
@@ -93,5 +94,34 @@ export const habitTypes = [
     habitTypeName: HabitTypes.SELECTABLE,
     habitTypeDescription:
       "E.g. What kind of workout did I do? Which piece did I practice? Which language did I learn?",
+  },
+];
+
+export const initialHabits: IHabit[] = [
+  {
+    name: "Waking up early",
+    color: "rgb(188, 180, 49)",
+    markedDays: [],
+    habitType: HabitTypes.YES_OR_NO,
+    id: getRandomNumber(),
+    question: "Did I wake up early today?",
+  },
+  {
+    name: "Meditation",
+    color: "rgb(34, 145, 62)",
+    markedDays: [],
+    habitType: HabitTypes.MEASURABLE,
+    unit: "min",
+    id: getRandomNumber(),
+    question: "How long did I meditate today?",
+  },
+  {
+    name: "Workout",
+    color: "rgb(173, 33, 33)",
+    markedDays: [],
+    habitType: HabitTypes.SELECTABLE,
+    options: ["Calisthenics", "Running", "Cycling"],
+    id: getRandomNumber(),
+    question: "What kind of workout did I do today?",
   },
 ];
