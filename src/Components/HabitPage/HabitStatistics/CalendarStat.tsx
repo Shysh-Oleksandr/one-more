@@ -41,48 +41,84 @@ function CalendarStat() {
     );
     if (currentHabit.habitType === HabitTypes.YES_OR_NO)
       return <span>{date.getDate()}</span>;
+    else if (currentHabit.habitType === HabitTypes.MEASURABLE) {
+      return (
+        <div>
+          <input
+            type="checkbox"
+            className="calendar-tile-checkbox"
+            id={`${date.getTime()}-calendar-tile`}
+          />
+          <label
+            htmlFor={`${date.getTime()}-calendar-tile`}
+            className="py-10 cursor-pointer"
+          >
+            <span className="calendar-tile-day w-full h-full cursor-pointer">
+              {date.getDate()}
+              {!!currentMarkedDay && (
+                <div className="absolute bottom-0 right-0 bg-slate-800 px-[3px] py-[1px] rounded-tl-lg text-xs">
+                  {currentMarkedDay?.measurableValue}
+                </div>
+              )}
+            </span>
 
-    return (
-      <div>
-        <input
-          type="checkbox"
-          className="calendar-tile-checkbox"
-          id={`${date.getTime()}-calendar-tile`}
-        />
-        <label
-          htmlFor={`${date.getTime()}-calendar-tile`}
-          className="py-10 cursor-pointer"
-        >
-          <span className="calendar-tile-day w-full h-full cursor-pointer">
-            {date.getDate()}
-            {!!currentMarkedDay && (
-              <div className="absolute bottom-0 right-0 bg-slate-800 px-[3px] py-[1px] rounded-tl-lg text-xs">
-                {currentMarkedDay?.measurableValue}
-              </div>
-            )}
-          </span>
+            <span className="calendar-tile-measurable-value">
+              <input
+                type="number"
+                className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
+                min={0}
+                step={0.1}
+                onFocus={(e) => e.target.select()}
+                onChange={(e) =>
+                  changeMeasurableValue(e, date, currentHabit.id)
+                }
+                defaultValue={
+                  currentHabit.markedDays.find(
+                    (day) => day.date === date.getTime()
+                  )?.measurableValue || 0
+                }
+              />
+              <label className="text-center break-words text-sm !leading-[0.2rem]">
+                {currentHabit.unit?.substring(0, 4)}
+              </label>
+            </span>
+          </label>
+        </div>
+      );
+    } else if (currentHabit.habitType === HabitTypes.SELECTABLE) {
+      return (
+        <div>
+          {date.getDate()}
 
-          <span className="calendar-tile-measurable-value">
-            <input
-              type="number"
-              className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
-              min={0}
-              step={0.1}
-              onFocus={(e) => e.target.select()}
-              onChange={(e) => changeMeasurableValue(e, date, currentHabit.id)}
-              defaultValue={
-                currentHabit.markedDays.find(
-                  (day) => day.date === date.getTime()
-                )?.measurableValue || 0
-              }
-            />
-            <label className="text-center break-words text-sm !leading-[0.2rem]">
-              {currentHabit.unit?.substring(0, 4)}
-            </label>
-          </span>
-        </label>
-      </div>
-    );
+          <select
+            onChange={(e) =>
+              markingHabit(date, currentHabit.id, 0, e.target.value)
+            }
+            defaultValue={
+              currentHabit.markedDays.find(
+                (markedDay) => markedDay.date === date.getTime()
+              )?.selectableOption || "none"
+            }
+            className="text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-slate-900 transition-colors"
+          >
+            <option value="none" className="py-1 bg-slate-800 text-lg">
+              none
+            </option>
+            {currentHabit.options?.map((option) => {
+              return (
+                <option
+                  className="py-1 bg-slate-800 text-lg"
+                  key={`option-${option}-${currentHabit.id}`}
+                  value={option}
+                >
+                  {option}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      );
+    }
   }
 
   useEffect(() => {
@@ -109,7 +145,13 @@ function CalendarStat() {
           currentHabit.habitType === HabitTypes.YES_OR_NO &&
             markingHabit(value, currentHabit.id);
         }}
-        tileClassName={({ date }) => highlightDay(date)}
+        tileClassName={({ date }) =>
+          highlightDay(date).concat(
+            currentHabit.habitType === HabitTypes.SELECTABLE
+              ? " !pt-[2px] !pb-[6px]"
+              : ""
+          )
+        }
         formatDay={(locale: string, date: Date) => formatCalendarTile(date)}
       />
     </div>
