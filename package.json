@@ -2,7 +2,7 @@
   "name": "one-more",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Shysh-Oleksandr.github.io/one-more",
+  "homepage": "http://shysh-oleksandr.github.io/one-more",
   "dependencies": {
     "@syncfusion/ej2-react-charts": "^19.4.53",
     "@testing-library/jest-dom": "^5.16.2",
