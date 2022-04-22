@@ -131,7 +131,7 @@ const habitReducer = (
             // If measurable value is 0, remove the date from array.
             if (
               (action.payload.measurableValue === 0 && isMeasurableType) ||
-              (action.payload.selectedOption === "None" && isSelectableType)
+              (action.payload.selectedOption === "none" && isSelectableType)
             ) {
               let newMarkedDays = habit.markedDays?.filter(
                 (day) => day.date !== date

@@ -13,6 +13,12 @@ html {
 #root {
   @apply lg:pb-8 md:pb-4 sm:pb-3 pb-2;
 }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

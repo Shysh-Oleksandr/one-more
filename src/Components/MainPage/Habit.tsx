@@ -126,7 +126,7 @@ function Habit({ habit }: IProps) {
         isMarked = !!currentHabit.markedDays.find(
           (markedDay) =>
             markedDay.date === date.getTime() &&
-            markedDay.selectableOption !== "None"
+            markedDay.selectableOption !== "none"
         );
 
         return (
@@ -137,12 +137,12 @@ function Habit({ habit }: IProps) {
             defaultValue={
               currentHabit.markedDays.find(
                 (markedDay) => markedDay.date === date.getTime()
-              )?.selectableOption || "None"
+              )?.selectableOption || "none"
             }
-            className="text-xs cursor-pointer hover:text-[#aeadad] bg-slate-900 transition-colors"
+            className="text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-slate-900 transition-colors"
           >
-            <option value="" className="py-1 bg-slate-800 text-lg">
-              None
+            <option value="none" className="py-1 bg-slate-800 text-lg">
+              none
             </option>
             {currentHabit.options?.map((option) => {
               return (
