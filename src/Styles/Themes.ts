@@ -22,6 +22,8 @@ export const lightTheme = {
   scrollBarTrackBg: "#e2e8f0",
   scrollBarThumbBg: "#888",
   habitTypeBg: "#53a1ef",
+  inputCellColorBg: "rgb(237, 237, 238)",
+  inputCellColor: "rgb(39,39,42)",
 };
 export const darkTheme = {
   body: "#212121",
@@ -47,6 +49,8 @@ export const darkTheme = {
   scrollBarTrackBg: "#212121",
   scrollBarThumbBg: "#303030",
   habitTypeBg: "#224a72",
+  inputCellColorBg: "rgb(39,39,42)",
+  inputCellColor: "#fff",
 };
 
 export type ThemeType = typeof lightTheme;

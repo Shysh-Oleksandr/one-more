@@ -28,7 +28,7 @@ const InputBlock = ({
 }: Props) => {
   return (
     <div className="add-habit__block">
-      <label className="add-habit__label" htmlFor={inputId}>
+      <label className="add-habit__label break-all" htmlFor={inputId}>
         {labelName}
       </label>
       <input

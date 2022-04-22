@@ -38,10 +38,10 @@ function HabitTypeModal() {
               }}
               className="habit-type md:px-8 px-6 md:pt-8 pt-2 text-left cursor-pointer add-habit w-[85%] !my-3 md:!pb-8 !pb-4 transition-colors"
             >
-              <h3 className="font-bold md:mb-3 mb-1 md:text-3xl text-2xl">
+              <h3 className="font-bold md:mb-3 mb-1 md:text-3xl sm:text-2xl text-xl">
                 {habitType.habitTypeName}
               </h3>
-              <p className="md:text-xl text-lg">
+              <p className="md:text-xl sm:text-lg text-base">
                 {habitType.habitTypeDescription}
               </p>
             </div>

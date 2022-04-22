@@ -40,33 +40,15 @@ function AddHabit() {
     formState: { errors },
   } = useForm();
 
+  const isSelectableType = currentHabit.habitType === HabitTypes.SELECTABLE;
+
   const [habitOptions, setHabitOptions] = useState<string[]>([
-    habitsState.isEditingHabit ? currentHabit.options![0] : "",
-    habitsState.isEditingHabit ? currentHabit.options![1] : "",
-    // <InputBlock
-    //   key={`add-habit__option-${getRandomNumber()}`}
-    //   labelName="Option 1:"
-    //   placeholder="E.g. Calisthenics"
-    //   defaultValue={habitsState.isEditingHabit ? currentHabit.options![0] : ""}
-    //   inputClassName="w-[65%]"
-    //   inputId="add-habit__option-1"
-    //   register={register}
-    //   registerName="option1"
-    //   required={true}
-    //   maxLength={20}
-    // />,
-    // <InputBlock
-    //   key={`add-habit__option-${getRandomNumber()}`}
-    //   labelName="Option 2:"
-    //   placeholder="E.g. Running"
-    //   defaultValue={habitsState.isEditingHabit ? currentHabit.options![1] : ""}
-    //   inputClassName="w-[65%]"
-    //   inputId="add-habit__option-2"
-    //   register={register}
-    //   registerName="option2"
-    //   required={false}
-    //   maxLength={20}
-    // />,
+    habitsState.isEditingHabit && isSelectableType
+      ? currentHabit.options![0]
+      : "",
+    habitsState.isEditingHabit && isSelectableType
+      ? currentHabit.options![1]
+      : "",
   ]);
 
   useEffect(() => {
@@ -110,9 +92,11 @@ function AddHabit() {
     const habitColor: string = getValues("color");
     const habitQuestion: string = getValues("question");
     const habitUnit: string = getValues("unit");
-    const habitOptionsName: string[] = habitOptions
-      .map((option, index) => getValues(`option${index + 1}`))
-      .filter((option) => option !== "");
+    const habitOptionsName: string[] =
+      habitOptions &&
+      habitOptions
+        .map((option, index) => getValues(`option${index + 1}`))
+        .filter((option) => option !== "");
 
     chooseRightMonth();
 

@@ -99,8 +99,10 @@ function Habit({ habit }: IProps) {
           <span>
             <input
               type="number"
-              style={{ color: isMarked ? currentHabit.color : "unset" }}
-              className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
+              style={{
+                color: isMarked ? currentHabit.color : "unset",
+              }}
+              className="habit-value bg-zinc-800 w-full rounded-sm transition-all focus:rounded-none text-center"
               min={0}
               step={0.1}
               onFocus={(e) => e.target.select()}
@@ -110,12 +112,12 @@ function Habit({ habit }: IProps) {
                   (day) => day.date === date.getTime()
                 )?.measurableValue || 0
               }
-              id={`${currentHabit.id}-${date}`}
+              id={`${currentHabit.id}-${date.getTime()}`}
             />
             <label
               style={{ color: isMarked ? currentHabit.color : "unset" }}
               className="text-center break-words text-sm !leading-[0.2rem]"
-              htmlFor={`${currentHabit.id}-${date}`}
+              htmlFor={`${currentHabit.id}-${date.getTime()}`}
             >
               {currentHabit.unit?.substring(0, 4)}
             </label>
@@ -131,6 +133,9 @@ function Habit({ habit }: IProps) {
 
         return (
           <select
+            style={{
+              color: isMarked ? currentHabit.color : "unset",
+            }}
             onChange={(e) =>
               markingHabit(date, currentHabit.id, 0, e.target.value)
             }
@@ -139,15 +144,18 @@ function Habit({ habit }: IProps) {
                 (markedDay) => markedDay.date === date.getTime()
               )?.selectableOption || "none"
             }
-            className="text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-slate-900 transition-colors"
+            className="habit-value text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-zinc-800 transition-colors"
           >
-            <option value="none" className="py-1 bg-slate-800 text-lg">
+            <option
+              value="none"
+              className="habit-value py-1 bg-zinc-800 text-lg"
+            >
               none
             </option>
             {currentHabit.options?.map((option) => {
               return (
                 <option
-                  className="py-1 bg-slate-800 text-lg"
+                  className="habit-value py-1 bg-zinc-800 text-lg"
                   key={`option-${option}-${currentHabit.id}`}
                   value={option}
                 >

@@ -65,7 +65,7 @@ function CalendarStat() {
             <span className="calendar-tile-measurable-value">
               <input
                 type="number"
-                className="bg-zinc-700 w-full rounded-sm transition-all focus:rounded-none text-center"
+                className="bg-zinc-700 habit-value w-full rounded-sm transition-all focus:rounded-none text-center"
                 min={0}
                 step={0.1}
                 onFocus={(e) => e.target.select()}
@@ -99,15 +99,18 @@ function CalendarStat() {
                 (markedDay) => markedDay.date === date.getTime()
               )?.selectableOption || "none"
             }
-            className="text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-slate-900 transition-colors"
+            className="habit-value text-xs cursor-pointer !m-0 h-full py-2 text-left w-8 hover:text-[#aeadad] bg-zinc-800 transition-colors"
           >
-            <option value="none" className="py-1 bg-slate-800 text-lg">
+            <option
+              value="none"
+              className="habit-value py-1 bg-zinc-800 text-lg"
+            >
               none
             </option>
             {currentHabit.options?.map((option) => {
               return (
                 <option
-                  className="py-1 bg-slate-800 text-lg"
+                  className="habit-value py-1 bg-zinc-800 text-lg"
                   key={`option-${option}-${currentHabit.id}`}
                   value={option}
                 >
